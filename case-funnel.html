@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Funnel optimisation — Mohamed Ali Ghouila</title>
-<meta name="description" content="Strategic optimisation of a high-stakes, regulated financial conversion funnel — a B2C case study." />
+<title>Removing friction from a high-stakes credit funnel — Mohamed Ali Ghouila</title>
+<meta name="description" content="Replacing a hidden-step carousel with a fully visible, accessible credit application — shipped on existing design-system components." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -59,233 +59,74 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <section class="chero" id="overview">
     <div class="chero__top pad">
       <a class="chero__back" href="index.html#work" data-r>← All work</a>
-      <p class="mono mono--soft chero__tag" data-r>Case 02 · B2C · Conversion</p>
-      <h1 data-r>Funnel <em>optimisation</em></h1>
-      <p class="chero__lede" data-r>A regulated product where you can’t cut steps — drop-off had to be solved with clarity, not shortcuts.</p>
+      <p class="mono mono--soft chero__tag" data-r>easyCredit · Fintech · Web app</p>
+      <h1 data-r>Removing friction from a <em>high-stakes</em> credit funnel</h1>
+      <p class="chero__lede" data-r>A carousel was hiding the journey users had already committed to. The fix was not a restyle — it was making the full path honest and visible, without adding or removing a single required step.</p>
+      <p class="chero__role" data-r><span class="cbadge">Shipped</span><span>Senior Product Designer — owned the audit, exploration, n=6 usability test, and shipped design.</span></p>
     </div>
     <dl class="chero__meta" data-r>
       <div><dt>Role</dt><dd>Sr. Product Designer</dd></div>
-      <div><dt>Year</dt><dd>2023 <i class="ph" title="Placeholder — confirm year">tbd</i></dd></div>
-      <div><dt>Domain</dt><dd>Conversion / CRO</dd></div>
-      <div><dt>Outcome</dt><dd>↗ Completion <i class="ph" title="Placeholder — verify metric">tbd</i></dd></div>
+      <div><dt>Client</dt><dd>easyCredit</dd></div>
+      <div><dt>Domain</dt><dd>Fintech · CRO</dd></div>
+      <div><dt>Type</dt><dd>Shipped</dd></div>
     </dl>
-    <div class="chero__cover pad" data-r>
-      <div class="boards">
-      <figure class="board" data-r>
-        <div class="board__frame board__ar--wide">
-          <span class="board__dim" aria-hidden="true">2400 × 1350</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">❖</span>
-            <p class="board__name">Cover artboard — case hero</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      </div>
-    </div>
   </section>
 
-  <!-- CONTEXT & CHALLENGE -->
+  
   <section class="cs" id="context">
     <header class="shead">
-      <h2>The <em>challenge</em></h2>
-      <span class="mono">(02.1) — Context</span>
+      <h2>The <em>problem</em></h2>
+      <span class="mono">(01.1) — Problem</span>
     </header>
-    <div class="cs__lede pad" data-r><p>In a regulated product the steps are fixed by law. Drop-off had to be addressed without removing a single required field. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-    <div class="cs__cols" data-r>
-      <div class="cs__col"><h4><i>A.</i>Challenge</h4><p>In a regulated product the steps are fixed by law. Drop-off had to be addressed without removing a single required field. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-      <div class="cs__col"><h4><i>B.</i>Approach</h4><p>Instrumented every step, then redesigned the riskiest transitions with progressive disclosure and honest progress. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-      <div class="cs__col"><h4><i>C.</i>Outcome</h4><p>A calmer funnel that converts without pressure tactics. <i class="ph" title="Placeholder — metrics">tbd</i></p></div>
-    </div>
-    <div class="cs__boards pad" data-r><div class="boards">
-      <figure class="board board--7" data-r>
-        <div class="board__frame board__ar--wide">
-          <span class="board__dim" aria-hidden="true">1600 × 900</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">◷</span>
-            <p class="board__name">Problem framing — context board</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      <figure class="board board--5" data-r>
-        <div class="board__frame board__ar--wide">
-          <span class="board__dim" aria-hidden="true">1280 × 720</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">⊕</span>
-            <p class="board__name">Constraints & stakeholders</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      </div></div>
+    <div class="cs__lede pad" data-r><p>Steps lived behind a horizontal swipe; discoverability relied on a gesture many users never made. People committed, then discovered more steps late — and that surprise broke momentum at the worst point in a high-anxiety flow.</p></div><div class="pq pad" data-r><p>Not a styling problem — a trust problem. Hidden effort costs <em>belief</em>, and belief is what carries a user through a high-stakes flow.</p></div>
   </section>
-
-  <!-- RESEARCH -->
+  
   <section class="cs" id="research">
     <header class="shead">
-      <h2>Research &amp; <em>discovery</em></h2>
-      <span class="mono">(02.2) — Discovery</span>
+      <h2>Evidence &amp; <em>discovery</em></h2>
+      <span class="mono">(01.2) — Evidence</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Funnel analytics, session replays and a step-by-step friction audit to rank where users abandoned and why. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-    <div class="cs__boards pad" data-r><div class="boards">
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--sq">
-          <span class="board__dim" aria-hidden="true">1024 × 1024</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">⊛</span>
-            <p class="board__name">Research synthesis — affinity map</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--sq">
-          <span class="board__dim" aria-hidden="true">1024 × 1024</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">⇉</span>
-            <p class="board__name">User journey — current state</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--sq">
-          <span class="board__dim" aria-hidden="true">1024 × 1024</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">✦</span>
-            <p class="board__name">Key insight — evidence board</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      </div></div>
+    <div class="cs__lede pad" data-r><p>Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.</p></div>
   </section>
-
-  <!-- APPROACH -->
+  
   <section class="cs" id="approach">
     <header class="shead">
       <h2>The <em>approach</em></h2>
-      <span class="mono">(02.3) — Strategy</span>
+      <span class="mono">(01.3) — Approach</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Instrumented every step, then redesigned the riskiest transitions with progressive disclosure and honest progress. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-    <div class="cs__boards pad" data-r><div class="boards">
-      <figure class="board board--6" data-r>
-        <div class="board__frame board__ar--wide">
-          <span class="board__dim" aria-hidden="true">1600 × 900</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">✎</span>
-            <p class="board__name">Concept exploration — sketches</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      <figure class="board board--6" data-r>
-        <div class="board__frame board__ar--wide">
-          <span class="board__dim" aria-hidden="true">1600 × 900</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">▥</span>
-            <p class="board__name">Wireframes — low fidelity</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        
-      </figure>
-      </div></div>
+    <div class="cs__lede pad" data-r><p>I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.</p></div>
   </section>
-
-  <!-- THE DESIGN -->
+  
   <section class="cs" id="solution">
     <header class="shead">
       <h2>The <em>design</em></h2>
-      <span class="mono">(02.4) — Outcome design</span>
+      <span class="mono">(01.4) — Solution</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Before / after of the highest-abandonment transitions, plus the instrumentation that drove the redesign. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
-    <div class="cs__boards pad" data-r><div class="boards">
-      <figure class="board board--12" data-r>
-        <div class="board__frame board__ar--ultra">
-          <span class="board__dim" aria-hidden="true">1920 × 820</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">▤</span>
-            <p class="board__name">Funnel map — drop-off heat overlay</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        <figcaption class="board__cap"><b>Fig. 1</b>Where users leave, ranked by step.</figcaption>
-      </figure>
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--tall">
-          <span class="board__dim" aria-hidden="true">390 × 844</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">△</span>
-            <p class="board__name">Step 3 — before</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        <figcaption class="board__cap"><b>Fig. 2</b>Original high-friction screen.</figcaption>
-      </figure>
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--tall">
-          <span class="board__dim" aria-hidden="true">390 × 844</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">▽</span>
-            <p class="board__name">Step 3 — after</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        <figcaption class="board__cap"><b>Fig. 3</b>Progressive disclosure applied.</figcaption>
-      </figure>
-      <figure class="board board--4" data-r>
-        <div class="board__frame board__ar--tall">
-          <span class="board__dim" aria-hidden="true">390 × 844</span>
-          <div class="board__center">
-            <span class="board__glyph" aria-hidden="true">◓</span>
-            <p class="board__name">Honest progress indicator</p>
-            <span class="board__tag">Artboard · placeholder</span>
-          </div>
-        </div>
-        <figcaption class="board__cap"><b>Fig. 4</b>Real progress, no dark patterns.</figcaption>
-      </figure>
-      </div></div>
+    <div class="cs__lede pad" data-r><p>Every step visible at a glance, details on demand. Vertical disclosure cards: 100% of steps shown immediately, each expanding for detail only when needed — scroll-based, keyboard- and screen-reader-accessible, no swipe to discover.</p></div>
   </section>
-
-  <!-- OUTCOME -->
+  
   <section class="cs" id="outcome">
     <header class="shead">
-      <h2>Outcome &amp; <em>impact</em></h2>
-      <span class="mono">(02.5) — Impact</span>
+      <h2>Outcome &amp; <em>what I'd measure</em></h2>
+      <span class="mono">(01.5) — Outcome</span>
     </header>
-    <div class="cs__lede pad" data-r><p>A calmer funnel that converts without pressure tactics.</p></div>
-    <div class="nums" data-r>
-      <div class="num"><b><span data-count="0">0</span></b><span>Primary metric <i class="ph" title="Placeholder — add metric">tbd</i></span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Secondary metric <i class="ph" title="Placeholder — add metric">tbd</i></span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Adoption / reach <i class="ph" title="Placeholder — add metric">tbd</i></span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Qualitative signal <i class="ph" title="Placeholder — add metric">tbd</i></span></div>
-    </div>
+    <div class="cs__lede pad" data-r><p>Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.</p></div>
   </section>
-
-  <!-- REFLECTION -->
+  
   <section class="cs" id="reflection">
     <header class="shead">
-      <h2>What I’d <em>carry forward</em></h2>
-      <span class="mono">(02.6) — Reflection</span>
+      <h2>Trade-off &amp; <em>reflection</em></h2>
+      <span class="mono">(01.6) — Reflection</span>
     </header>
-    <div class="cs__lede pad" data-r><p>A short reflection on what worked, what I’d change, and the principle this project reinforced. <i class="ph" title="Draft — replace with real copy">draft</i></p></div>
+    <div class="cs__lede pad" data-r><p>The trade-off I chose: visibility over visual novelty. A carousel looks more modern; honest visibility serves the brand better, because "easy" is a core value and a transparent funnel makes it literal. What I would measure next: stage-completion rate of this variant against the carousel in a holdout split, with time-to-first-doubt as a secondary signal.</p></div>
   </section>
 
   <!-- NEXT CASE -->
   <section class="cnext">
     <div class="cnext__row" data-r>
       <div>
-        <p class="cnext__lab">Next case study — 03</p>
-        <a class="cnext__title" href="case-platform.html">0 → 1 solution<span class="orb" aria-hidden="true">→</span></a>
+        <p class="cnext__lab">Next case study — 02</p>
+        <a class="cnext__title" href="case-autonomy.html">Improving user's autonomy<span class="orb" aria-hidden="true">→</span></a>
       </div>
       <a class="cnext__all" href="index.html#work">All work <span aria-hidden="true">↗</span></a>
     </div>

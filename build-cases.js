@@ -90,17 +90,60 @@ const shead = (h2, no, label) => `<header class="shead">
       <span class="mono">(${no}) — ${label}</span>
     </header>`;
 
-const lede = (txt, draft = true) => `<div class="cs__lede pad" data-r><p>${txt}${draft ? ' ' + ph('Draft — replace with real copy') : ''}</p></div>`;
+/* no placeholder injection in new content — content is real or honestly framed */
+const lede = (txt) => `<div class="cs__lede pad" data-r><p>${txt}</p></div>`;
+const badge = (label, concept) =>
+  `<span class="cbadge${concept ? ' cbadge--concept' : ''}">${label}</span>`;
+
+/* one case section: Swiss head + optional lede + body markup */
+const section = (id, h2, no, label, body) => `
+  <section class="cs" id="${id}">
+    ${shead(h2, no, label)}
+    ${body}
+  </section>`;
 
 /* ---------- per-case content ---------- */
 const CASES = [
   {
+    file: 'case-funnel.html',
+    num: '01', kicker: 'Fintech · Web app',
+    kind: 'Shipped',
+    title: 'Removing friction from a high-stakes credit funnel',
+    gTitle: 'Removing friction from a <em>high-stakes</em> credit funnel',
+    desc: 'Replacing a hidden-step carousel with a fully visible, accessible credit application — shipped on existing design-system components.',
+    role: 'Senior Product Designer — owned the audit, exploration, n=6 usability test, and shipped design.',
+    tags: 'easyCredit · Fintech · Web app',
+    lede: 'A carousel was hiding the journey users had already committed to. The fix was not a restyle — it was making the full path honest and visible, without adding or removing a single required step.',
+    meta: [['Role', 'Sr. Product Designer'], ['Client', 'easyCredit'], ['Domain', 'Fintech · CRO'], ['Type', 'Shipped']],
+    sections: {
+      context: {
+        lede: 'Steps lived behind a horizontal swipe; discoverability relied on a gesture many users never made. People committed, then discovered more steps late — and that surprise broke momentum at the worst point in a high-anxiety flow.',
+        reframe: 'Not a styling problem — a trust problem. Hidden effort costs <em>belief</em>, and belief is what carries a user through a high-stakes flow.',
+      },
+      research: {
+        lede: 'Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.',
+      },
+      approach: {
+        lede: 'I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.',
+      },
+      solution: {
+        lede: 'Every step visible at a glance, details on demand. Vertical disclosure cards: 100% of steps shown immediately, each expanding for detail only when needed — scroll-based, keyboard- and screen-reader-accessible, no swipe to discover.',
+      },
+      outcome: {
+        lede: 'Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.',
+      },
+      reflection: {
+        lede: 'The trade-off I chose: visibility over visual novelty. A carousel looks more modern; honest visibility serves the brand better, because "easy" is a core value and a transparent funnel makes it literal. What I would measure next: stage-completion rate of this variant against the carousel in a holdout split, with time-to-first-doubt as a secondary signal.',
+      },
+    },
+  },
+  {
     file: 'case-autonomy.html',
-    num: '01', kicker: 'B2C · Fintech',
-    title: 'Improving user’s autonomy',
-    gTitle: 'Improving user’s <em>autonomy</em>',
+    num: '02', kicker: 'B2C · Fintech',
+    title: "Improving user's autonomy",
+    gTitle: "Improving user's <em>autonomy</em>",
     desc: 'Preventing financial overextension while preserving user autonomy — a B2C fintech case study.',
-    lede: 'Preventing financial overextension while preserving the user’s sense of control — protection that informs rather than polices.',
+    lede: "Preventing financial overextension while preserving the user's sense of control — protection that informs rather than polices.",
     meta: [['Role', 'Sr. Product Designer'], ['Year', '2024 ' + ph('Placeholder — confirm year')], ['Domain', 'Consumer fintech'], ['Outcome', '↘ Overextension ' + ph('Placeholder — add metric')]],
     challenge: 'Flexible credit makes it easy to borrow and hard to stay in control. The brief: protection without paternalism.',
     approach: 'Limits reframed as a tool the user owns — self-set thresholds, progressive friction, language that informs rather than warns.',
@@ -112,26 +155,6 @@ const CASES = [
       { span: 4, ar: 'tall', name: 'Limit reached — informative state', dim: '390 × 844', glyph: '◔', cap: 'Mobile alert, framed as information.', capTitle: 'Fig. 2' },
       { span: 6, ar: null, name: 'Progressive-friction confirm step', dim: '1280 × 800', glyph: '◀', cap: 'Friction scales with risk.', capTitle: 'Fig. 3' },
       { span: 6, ar: null, name: 'Spend overview — control dashboard', dim: '1280 × 800', glyph: '▦', cap: 'A calm, glanceable view of headroom.', capTitle: 'Fig. 4' },
-    ],
-  },
-  {
-    file: 'case-funnel.html',
-    num: '02', kicker: 'B2C · Conversion',
-    title: 'Funnel optimisation',
-    gTitle: 'Funnel <em>optimisation</em>',
-    desc: 'Strategic optimisation of a high-stakes, regulated financial conversion funnel — a B2C case study.',
-    lede: 'A regulated product where you can’t cut steps — drop-off had to be solved with clarity, not shortcuts.',
-    meta: [['Role', 'Sr. Product Designer'], ['Year', '2023 ' + ph('Placeholder — confirm year')], ['Domain', 'Conversion / CRO'], ['Outcome', '↗ Completion ' + ph('Placeholder — verify metric')]],
-    challenge: 'In a regulated product the steps are fixed by law. Drop-off had to be addressed without removing a single required field.',
-    approach: 'Instrumented every step, then redesigned the riskiest transitions with progressive disclosure and honest progress.',
-    outcome: 'A calmer funnel that converts without pressure tactics.',
-    research: 'Funnel analytics, session replays and a step-by-step friction audit to rank where users abandoned and why.',
-    designIntro: 'Before / after of the highest-abandonment transitions, plus the instrumentation that drove the redesign.',
-    designBoards: [
-      { span: 12, ar: 'ultra', name: 'Funnel map — drop-off heat overlay', dim: '1920 × 820', glyph: '▤', cap: 'Where users leave, ranked by step.', capTitle: 'Fig. 1' },
-      { span: 4, ar: 'tall', name: 'Step 3 — before', dim: '390 × 844', glyph: '△', cap: 'Original high-friction screen.', capTitle: 'Fig. 2' },
-      { span: 4, ar: 'tall', name: 'Step 3 — after', dim: '390 × 844', glyph: '▽', cap: 'Progressive disclosure applied.', capTitle: 'Fig. 3' },
-      { span: 4, ar: 'tall', name: 'Honest progress indicator', dim: '390 × 844', glyph: '◓', cap: 'Real progress, no dark patterns.', capTitle: 'Fig. 4' },
     ],
   },
   {
@@ -180,7 +203,17 @@ const CASES = [
 /* ---------- page template ---------- */
 function page(c, idx) {
   const next = CASES[(idx + 1) % CASES.length];
-
+  const S = c.sections || {};                 // defensive: old entries have no .sections yet
+  const kind = c.kind || 'Shipped';
+  const role = c.role || '';
+  const tags = c.tags || c.kicker || '';
+  const concept = /concept/i.test(kind);
+  const block = id => {                        // renders lede + optional reframe pull-quote + optional component html
+    const s = S[id] || {};
+    return `${s.lede ? lede(s.lede) : ''}`
+      + `${s.reframe ? `<div class="pq pad" data-r><p>${s.reframe}</p></div>` : ''}`
+      + `${s.html || ''}`;
+  };
   return `${head(c)}
 
 <main id="top" class="cpage">
@@ -190,78 +223,22 @@ ${toc}
   <section class="chero" id="overview">
     <div class="chero__top pad">
       <a class="chero__back" href="index.html#work" data-r>← All work</a>
-      <p class="mono mono--soft chero__tag" data-r>Case ${c.num} · ${c.kicker}</p>
+      <p class="mono mono--soft chero__tag" data-r>${tags}</p>
       <h1 data-r>${c.gTitle}</h1>
       <p class="chero__lede" data-r>${c.lede}</p>
+      ${role ? `<p class="chero__role" data-r>${badge(kind, concept)}<span>${role}</span></p>` : ''}
     </div>
     <dl class="chero__meta" data-r>
       ${c.meta.map(m => `<div><dt>${m[0]}</dt><dd>${m[1]}</dd></div>`).join('\n      ')}
     </dl>
-    <div class="chero__cover pad" data-r>
-      ${boards([{ ar: 'wide', name: 'Cover artboard — case hero', dim: '2400 × 1350', glyph: '❖' }])}
-    </div>
   </section>
 
-  <!-- CONTEXT & CHALLENGE -->
-  <section class="cs" id="context">
-    ${shead('The <em>challenge</em>', c.num + '.1', 'Context')}
-    ${lede(c.challenge)}
-    <div class="cs__cols" data-r>
-      <div class="cs__col"><h4><i>A.</i>Challenge</h4><p>${c.challenge} ${ph('Draft — replace with real copy')}</p></div>
-      <div class="cs__col"><h4><i>B.</i>Approach</h4><p>${c.approach} ${ph('Draft — replace with real copy')}</p></div>
-      <div class="cs__col"><h4><i>C.</i>Outcome</h4><p>${c.outcome} ${ph('Placeholder — metrics')}</p></div>
-    </div>
-    <div class="cs__boards pad" data-r>${boards([
-    { span: 7, ar: 'wide', name: 'Problem framing — context board', dim: '1600 × 900', glyph: '◷' },
-    { span: 5, ar: 'wide', name: 'Constraints & stakeholders', dim: '1280 × 720', glyph: '⊕' },
-  ])}</div>
-  </section>
-
-  <!-- RESEARCH -->
-  <section class="cs" id="research">
-    ${shead('Research &amp; <em>discovery</em>', c.num + '.2', 'Discovery')}
-    ${lede(c.research)}
-    <div class="cs__boards pad" data-r>${boards([
-    { span: 4, ar: 'sq', name: 'Research synthesis — affinity map', dim: '1024 × 1024', glyph: '⊛' },
-    { span: 4, ar: 'sq', name: 'User journey — current state', dim: '1024 × 1024', glyph: '⇉' },
-    { span: 4, ar: 'sq', name: 'Key insight — evidence board', dim: '1024 × 1024', glyph: '✦' },
-  ])}</div>
-  </section>
-
-  <!-- APPROACH -->
-  <section class="cs" id="approach">
-    ${shead('The <em>approach</em>', c.num + '.3', 'Strategy')}
-    ${lede(c.approach)}
-    <div class="cs__boards pad" data-r>${boards([
-    { span: 6, ar: 'wide', name: 'Concept exploration — sketches', dim: '1600 × 900', glyph: '✎' },
-    { span: 6, ar: 'wide', name: 'Wireframes — low fidelity', dim: '1600 × 900', glyph: '▥' },
-  ])}</div>
-  </section>
-
-  <!-- THE DESIGN -->
-  <section class="cs" id="solution">
-    ${shead('The <em>design</em>', c.num + '.4', 'Outcome design')}
-    ${lede(c.designIntro)}
-    <div class="cs__boards pad" data-r>${boards(c.designBoards)}</div>
-  </section>
-
-  <!-- OUTCOME -->
-  <section class="cs" id="outcome">
-    ${shead('Outcome &amp; <em>impact</em>', c.num + '.5', 'Impact')}
-    ${lede(c.outcome, false)}
-    <div class="nums" data-r>
-      <div class="num"><b><span data-count="0">0</span></b><span>Primary metric ${ph('Placeholder — add metric')}</span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Secondary metric ${ph('Placeholder — add metric')}</span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Adoption / reach ${ph('Placeholder — add metric')}</span></div>
-      <div class="num"><b><span data-count="0">0</span></b><span>Qualitative signal ${ph('Placeholder — add metric')}</span></div>
-    </div>
-  </section>
-
-  <!-- REFLECTION -->
-  <section class="cs" id="reflection">
-    ${shead('What I’d <em>carry forward</em>', c.num + '.6', 'Reflection')}
-    ${lede('A short reflection on what worked, what I’d change, and the principle this project reinforced.')}
-  </section>
+  ${section('context',    'The <em>problem</em>',                c.num + '.1', 'Problem',     block('context'))}
+  ${section('research',   'Evidence &amp; <em>discovery</em>',   c.num + '.2', 'Evidence',    block('research'))}
+  ${section('approach',   'The <em>approach</em>',               c.num + '.3', 'Approach',    block('approach'))}
+  ${section('solution',   'The <em>design</em>',                 c.num + '.4', 'Solution',    block('solution'))}
+  ${section('outcome',    "Outcome &amp; <em>what I'd measure</em>", c.num + '.5', 'Outcome', block('outcome'))}
+  ${section('reflection', 'Trade-off &amp; <em>reflection</em>', c.num + '.6', 'Reflection',  block('reflection'))}
 
   <!-- NEXT CASE -->
   <section class="cnext">

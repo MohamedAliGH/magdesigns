@@ -209,3 +209,14 @@
 @media(prefers-reduced-motion:reduce){
   .board:hover{transform:none}
 }
+
+/* ===== go-live: cover role + badge + pull-quote ===== */
+.chero__role{margin-top:1.6rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+  font:400 .92rem/1.5 var(--f-disp);color:var(--ink-soft);max-width:60ch}
+.cbadge{font:700 .6rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bg);background:var(--ink);padding:.45rem .6rem}
+.cbadge--concept{background:var(--blue)}
+.pq{padding-block:1.4rem 2rem}
+.pq p{font-family:var(--f-disp);font-weight:500;font-style:italic;
+  font-size:clamp(1.3rem,3vw,2rem);line-height:1.25;letter-spacing:-.01em;max-width:24ch;color:var(--ink)}
+.pq em{color:var(--blue);font-style:italic}

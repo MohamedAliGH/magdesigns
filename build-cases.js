@@ -196,23 +196,55 @@ const CASES = [
   },
   {
     file: 'case-autonomy.html',
-    num: '02', kicker: 'B2C · Fintech',
-    title: "Improving user's autonomy",
-    gTitle: "Improving user's <em>autonomy</em>",
-    desc: 'Preventing financial overextension while preserving user autonomy — a B2C fintech case study.',
-    lede: "Preventing financial overextension while preserving the user's sense of control — protection that informs rather than polices.",
-    meta: [['Role', 'Sr. Product Designer'], ['Year', '2024 ' + ph('Placeholder — confirm year')], ['Domain', 'Consumer fintech'], ['Outcome', '↘ Overextension ' + ph('Placeholder — add metric')]],
-    challenge: 'Flexible credit makes it easy to borrow and hard to stay in control. The brief: protection without paternalism.',
-    approach: 'Limits reframed as a tool the user owns — self-set thresholds, progressive friction, language that informs rather than warns.',
-    outcome: 'Lower risky usage with the perceived sense of autonomy preserved.',
-    research: 'Interviews, support-ticket analysis and spend-pattern review to locate the moments where control quietly slips away.',
-    designIntro: 'The core flows where autonomy is made visible and adjustable by the user.',
-    designBoards: [
-      { span: 8, ar: 'wide', name: 'Self-set limit — onboarding flow', dim: '1440 × 810', glyph: '◫', cap: 'User defines their own threshold during setup.', capTitle: 'Fig. 1' },
-      { span: 4, ar: 'tall', name: 'Limit reached — informative state', dim: '390 × 844', glyph: '◔', cap: 'Mobile alert, framed as information.', capTitle: 'Fig. 2' },
-      { span: 6, ar: null, name: 'Progressive-friction confirm step', dim: '1280 × 800', glyph: '◀', cap: 'Friction scales with risk.', capTitle: 'Fig. 3' },
-      { span: 6, ar: null, name: 'Spend overview — control dashboard', dim: '1280 × 800', glyph: '▦', cap: 'A calm, glanceable view of headroom.', capTitle: 'Fig. 4' },
-    ],
+    num: '02', kicker: 'eC+ · Fintech',
+    kind: 'Concept / proposal — not shipped',
+    title: 'Smart Repayment Guard',
+    gTitle: 'Smart Repayment <em>Guard</em>',
+    desc: 'A context-aware intervention that helps customers avoid financial overextension — without blocking them, and without being paternalistic. A concept / stakeholder proposal.',
+    role: 'Senior Product Designer — self-directed, end to end.',
+    tags: 'eC+ · Fintech · Concept proposal',
+    lede: "The product is good at “how much can I take?” and silent on “should I?”. The dangerous moment isn’t applying for credit — it’s the repeat withdrawal under stress. This proposes a context-aware safety layer that surfaces the future cost of a withdrawal without blocking the user.",
+    meta: [['Role', 'Sr. Product Designer'], ['Client', 'eC+'], ['Domain', 'Fintech'], ['Type', 'Concept / proposal']],
+    sections: {
+      context: {
+        lede: "The product shows the money is available and processes it; weeks later — a missed payment, difficulty, regret-driven churn. Betting that long-term trust compounds into retention faster than a marginally higher withdrawal rate.",
+        reframe: "A <em>trust</em> problem, not a compliance problem — help users make the decision they’d thank us for later, rather than block the ones a rule flags.",
+        html: axis("Complicit (don't intervene)", "Paternalistic (block)", "Target: warn, don't block"),
+      },
+      research: {
+        lede: 'Honest about its basis: this rests on a heuristic analysis of the live withdrawal flow plus themes from churn and support signals — no user testing yet. The first recommended step is five to eight moderated reactions before any engineering. The commitments it would hold:',
+        html: cards([
+          {h:'Context', p:'Intervene only at the right moment — no nagging on safe withdrawals.'},
+          {h:'Foresight', p:'Show the concrete future cost, not an abstract warning.'},
+          {h:'Choice', p:"Warn, don’t block. This is the line between a safety layer and a compliance pop-up."},
+        ]),
+      },
+      approach: {
+        lede: 'A bottom sheet that activates only in high-risk moments, detected from recent behaviour and remaining buffer. It shows concrete future impact before commitment, offers softer alternatives, and asks for an explicit, informed acknowledgement.',
+        html: seq([
+          {n:'1', user:'Enters a €500 payout', system:'Checks frequency + buffer, assesses risk'},
+          {n:'2', user:'Reads the future snapshot', system:'Shows +€48/mo, flags reduced flexibility'},
+          {n:'3', user:'Weighs softer options', system:'Suggests €300, offers delay, proposes a split'},
+          {n:'4', user:'Confirms an informed choice', system:'Requires explicit acknowledgement, then processes'},
+        ]),
+      },
+      solution: {
+        lede: "The intervention, state by state: a silent pass on safe withdrawals (proving the no-nagging principle), a future-snapshot that makes the cost concrete, soft alternatives, and an explicit acknowledgement. The future-snapshot is the emotional core — the moment an abstract risk becomes a number the user feels.",
+        html: schematic('Four states — risk detection · future snapshot · soft alternatives · acknowledgement', 'Designed states; high-fidelity screens to follow. Shown as schematic, not a shipped screenshot.'),
+      },
+      outcome: {
+        lede: "A proposal stands on reasoning, not borrowed data — so this is framed as projected targets and a test plan, never results. Long-term sustainable growth over short-term conversion: a user who takes €300 instead of €500, or delays a week, is a smaller transaction today and a retained, higher-lifetime-value customer tomorrow.",
+        html: metricTree("How we’d measure it", [
+          {metric:'Late-payment rate', role:'primary — Guard cohort vs. holdout'},
+          {metric:'Trust / NPS delta', role:'secondary'},
+          {metric:'Churn after payout peaks', role:'secondary'},
+          {metric:'Payout-frequency stability', role:'guardrail'},
+        ]),
+      },
+      reflection: {
+        lede: "The risk I’d flag to stakeholders: the risk-detection threshold is currently a designer’s assumption, not a tested rule — get it wrong and we nag safe users or miss risky ones. I’d want Risk and Data to co-own that threshold with me before launch. Naming that openly is what makes this judgement, not a sales pitch.",
+      },
+    },
   },
   {
     file: 'case-platform.html',

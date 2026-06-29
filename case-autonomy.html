@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Improving user's autonomy — Mohamed Ali Ghouila</title>
-<meta name="description" content="Preventing financial overextension while preserving user autonomy — a B2C fintech case study." />
+<title>Smart Repayment Guard — Mohamed Ali Ghouila</title>
+<meta name="description" content="A context-aware intervention that helps customers avoid financial overextension — without blocking them, and without being paternalistic. A concept / stakeholder proposal." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -59,16 +59,16 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <section class="chero" id="overview">
     <div class="chero__top pad">
       <a class="chero__back" href="index.html#work" data-r>← All work</a>
-      <p class="mono mono--soft chero__tag" data-r>B2C · Fintech</p>
-      <h1 data-r>Improving user's <em>autonomy</em></h1>
-      <p class="chero__lede" data-r>Preventing financial overextension while preserving the user's sense of control — protection that informs rather than polices.</p>
-      
+      <p class="mono mono--soft chero__tag" data-r>eC+ · Fintech · Concept proposal</p>
+      <h1 data-r>Smart Repayment <em>Guard</em></h1>
+      <p class="chero__lede" data-r>The product is good at “how much can I take?” and silent on “should I?”. The dangerous moment isn’t applying for credit — it’s the repeat withdrawal under stress. This proposes a context-aware safety layer that surfaces the future cost of a withdrawal without blocking the user.</p>
+      <p class="chero__role" data-r><span class="cbadge cbadge--concept">Concept / proposal — not shipped</span><span>Senior Product Designer — self-directed, end to end.</span></p>
     </div>
     <dl class="chero__meta" data-r>
       <div><dt>Role</dt><dd>Sr. Product Designer</dd></div>
-      <div><dt>Year</dt><dd>2024 <i class="ph" title="Placeholder — confirm year">tbd</i></dd></div>
-      <div><dt>Domain</dt><dd>Consumer fintech</dd></div>
-      <div><dt>Outcome</dt><dd>↘ Overextension <i class="ph" title="Placeholder — add metric">tbd</i></dd></div>
+      <div><dt>Client</dt><dd>eC+</dd></div>
+      <div><dt>Domain</dt><dd>Fintech</dd></div>
+      <div><dt>Type</dt><dd>Concept / proposal</dd></div>
     </dl>
   </section>
 
@@ -78,7 +78,10 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>The <em>problem</em></h2>
       <span class="mono">(02.1) — Problem</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>The product shows the money is available and processes it; weeks later — a missed payment, difficulty, regret-driven churn. Betting that long-term trust compounds into retention faster than a marginally higher withdrawal rate.</p></div><div class="pq pad" data-r><p>A <em>trust</em> problem, not a compliance problem — help users make the decision they’d thank us for later, rather than block the ones a rule flags.</p></div><div class="axis pad" data-r>
+  <div class="axis__bar"><span class="axis__zone"><span class="axis__zonelab">Target: warn, don't block</span></span></div>
+  <div class="axis__ends"><span>Complicit (don't intervene)</span><span>Paternalistic (block)</span></div>
+</div>
   </section>
   
   <section class="cs" id="research">
@@ -86,7 +89,11 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>Evidence &amp; <em>discovery</em></h2>
       <span class="mono">(02.2) — Evidence</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>Honest about its basis: this rests on a heuristic analysis of the live withdrawal flow plus themes from churn and support signals — no user testing yet. The first recommended step is five to eight moderated reactions before any engineering. The commitments it would hold:</p></div><div class="pcards pad" data-r>
+  <div class="pcard"><h4>Context</h4><p>Intervene only at the right moment — no nagging on safe withdrawals.</p></div>
+  <div class="pcard"><h4>Foresight</h4><p>Show the concrete future cost, not an abstract warning.</p></div>
+  <div class="pcard"><h4>Choice</h4><p>Warn, don’t block. This is the line between a safety layer and a compliance pop-up.</p></div>
+</div>
   </section>
   
   <section class="cs" id="approach">
@@ -94,7 +101,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>The <em>approach</em></h2>
       <span class="mono">(02.3) — Approach</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>A bottom sheet that activates only in high-risk moments, detected from recent behaviour and remaining buffer. It shows concrete future impact before commitment, offers softer alternatives, and asks for an explicit, informed acknowledgement.</p></div><div class="seq pad" data-r>
+  <div class="seq__row"><span class="seq__n">1</span><div class="seq__c"><b>User</b><p>Enters a €500 payout</p></div><div class="seq__c"><b>System</b><p>Checks frequency + buffer, assesses risk</p></div></div>
+  <div class="seq__row"><span class="seq__n">2</span><div class="seq__c"><b>User</b><p>Reads the future snapshot</p></div><div class="seq__c"><b>System</b><p>Shows +€48/mo, flags reduced flexibility</p></div></div>
+  <div class="seq__row"><span class="seq__n">3</span><div class="seq__c"><b>User</b><p>Weighs softer options</p></div><div class="seq__c"><b>System</b><p>Suggests €300, offers delay, proposes a split</p></div></div>
+  <div class="seq__row"><span class="seq__n">4</span><div class="seq__c"><b>User</b><p>Confirms an informed choice</p></div><div class="seq__c"><b>System</b><p>Requires explicit acknowledgement, then processes</p></div></div>
+</div>
   </section>
   
   <section class="cs" id="solution">
@@ -102,7 +114,10 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>The <em>design</em></h2>
       <span class="mono">(02.4) — Solution</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>The intervention, state by state: a silent pass on safe withdrawals (proving the no-nagging principle), a future-snapshot that makes the cost concrete, soft alternatives, and an explicit acknowledgement. The future-snapshot is the emotional core — the moment an abstract risk becomes a number the user feels.</p></div><figure class="schem pad" data-r>
+  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Four states — risk detection · future snapshot · soft alternatives · acknowledgement</p></div>
+  <figcaption>Designed states; high-fidelity screens to follow. Shown as schematic, not a shipped screenshot.</figcaption>
+</figure>
   </section>
   
   <section class="cs" id="outcome">
@@ -110,7 +125,15 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>Outcome &amp; <em>what I'd measure</em></h2>
       <span class="mono">(02.5) — Outcome</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>A proposal stands on reasoning, not borrowed data — so this is framed as projected targets and a test plan, never results. Long-term sustainable growth over short-term conversion: a user who takes €300 instead of €500, or delays a week, is a smaller transaction today and a retained, higher-lifetime-value customer tomorrow.</p></div><div class="mtree pad" data-r>
+  <p class="mtree__cap">How we’d measure it — <i>projected / hypotheses</i></p>
+  <ul class="mtree__list">
+    <li><b>Late-payment rate</b><span>primary — Guard cohort vs. holdout</span></li>
+    <li><b>Trust / NPS delta</b><span>secondary</span></li>
+    <li><b>Churn after payout peaks</b><span>secondary</span></li>
+    <li><b>Payout-frequency stability</b><span>guardrail</span></li>
+  </ul>
+</div>
   </section>
   
   <section class="cs" id="reflection">
@@ -118,7 +141,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>Trade-off &amp; <em>reflection</em></h2>
       <span class="mono">(02.6) — Reflection</span>
     </header>
-    
+    <div class="cs__lede pad" data-r><p>The risk I’d flag to stakeholders: the risk-detection threshold is currently a designer’s assumption, not a tested rule — get it wrong and we nag safe users or miss risky ones. I’d want Risk and Data to co-own that threshold with me before launch. Naming that openly is what makes this judgement, not a sales pitch.</p></div>
   </section>
 
   <!-- NEXT CASE -->

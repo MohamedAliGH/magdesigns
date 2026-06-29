@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>From five products to one operational hub — Mohamed Ali Ghouila</title>
-<meta name="description" content="Turning a fragmented enterprise ecosystem into one operational hub — and founding the design system that outlived the portal itself." />
+<title>Predictive maintenance, legible at a glance — Mohamed Ali Ghouila</title>
+<meta name="description" content="Redesigning the condition-monitoring platform engineers use to catch a gearbox failure before it stops a production line." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -59,15 +59,15 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <section class="chero" id="overview">
     <div class="chero__top pad">
       <a class="chero__back" href="index.html#work" data-r>← All work</a>
-      <p class="mono mono--soft chero__tag" data-r>VIER · Enterprise SaaS (B2B)</p>
-      <h1 data-r>Five products that behaved like <em>five startups</em></h1>
-      <p class="chero__lede" data-r>Six products — routing, analytics, forecasting, monitoring, bots, ticketing — each its own island: multiple logins, manually stitched KPIs, tickets in separate environments. The obvious read was "inconsistent UI." It was infrastructure.</p>
-      <p class="chero__role" data-r><span class="cbadge">Shipped</span><span>Owned IA + portal UX; founded the design system; specced the SSO UX (engineering led SSO).</span></p>
+      <p class="mono mono--soft chero__tag" data-r>DriveRadar · SEW-Eurodrive · B2B SaaS / IIoT</p>
+      <h1 data-r>A factory’s failing machinery, <em>legible at a glance</em></h1>
+      <p class="chero__lede" data-r>All the data, almost none of the legibility. A map and table where every asset looked equal; failing units didn’t stand out. A missed warning isn’t bad UX — it’s a stopped production line.</p>
+      <p class="chero__role" data-r><span class="cbadge">Shipped</span><span>Product / UI designer — owned the asset-overview, asset-detail, and measurement views.</span></p>
     </div>
     <dl class="chero__meta" data-r>
-      <div><dt>Role</dt><dd>Sr. Product Designer</dd></div>
-      <div><dt>Client</dt><dd>VIER</dd></div>
-      <div><dt>Domain</dt><dd>Enterprise SaaS</dd></div>
+      <div><dt>Role</dt><dd>Product / UI Designer</dd></div>
+      <div><dt>Client</dt><dd>SEW-Eurodrive</dd></div>
+      <div><dt>Domain</dt><dd>B2B · IIoT</dd></div>
       <div><dt>Type</dt><dd>Shipped</dd></div>
     </dl>
   </section>
@@ -76,60 +76,56 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <section class="cs" id="context">
     <header class="shead">
       <h2>The <em>problem</em></h2>
-      <span class="mono">(03.1) — Problem</span>
+      <span class="mono">(04.1) — Problem</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Fragmentation looked like a UX problem. The cause was no shared authentication, no shared information architecture, no shared component language — so every fix was local and the experience kept drifting apart.</p></div><div class="pq pad" data-r><p>The biggest usability win — single sign-on — was an <em>infrastructure</em> decision, made because design was in architecture conversations it is usually not invited to.</p></div>
+    <div class="cs__lede pad" data-r><p>The platform was built around the data the sensors produce, not the decision the operator has to make. Raw vibration plots — accurate, but unreadable at a glance; every measurement at the same visual weight; no hierarchy of concern.</p></div><div class="pq pad" data-r><p>Design around the <em>decision</em>, not the data — demote the spectrum so a failing gearbox surfaces.</p></div>
   </section>
   
   <section class="cs" id="research">
     <header class="shead">
       <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(03.2) — Evidence</span>
+      <span class="mono">(04.2) — Evidence</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Grounded in research, not assumption. The recurring line across nearly every interview: "I just want everything in one place."</p></div><div class="statblock pad" data-r>
-  <div class="statblock__item"><b>18</b><span>User interviews</span><small>+ 5 workshops, 4 journey maps</small></div>
-  <div class="statblock__item"><b>4.2</b><span>Systems per user, on average</span></div>
-  <div class="statblock__item"><b>~45min</b><span>Lost per day navigating between tools</span></div>
-</div>
+    <div class="cs__lede pad" data-r><p>For a metric-light craft case the visuals are the proof. The redesign reorganises three levels of the product, each answering exactly one question and handing off cleanly to the next.</p></div><ol class="tiers pad" data-r>
+  <li class="tiers__row"><span class="tiers__no">01</span><b>Fleet</b><span class="tiers__q">"Where do I look?" — which assets have alerts, ranked by severity.</span></li>
+  <li class="tiers__row"><span class="tiers__no">02</span><b>Asset</b><span class="tiers__q">"What's wrong with this machine?" — health → measurements → components → service.</span></li>
+  <li class="tiers__row"><span class="tiers__no">03</span><b>Signal</b><span class="tiers__q">"Is this getting worse?" — one measurement trended against its threshold.</span></li>
+</ol>
   </section>
   
   <section class="cs" id="approach">
     <header class="shead">
       <h2>The <em>approach</em></h2>
-      <span class="mono">(03.3) — Approach</span>
+      <span class="mono">(04.3) — Approach</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Three pillars — and the real work underneath them was the information architecture: I weighed an app-launcher model (a grid of products that kept silos one click away) against a workspace model that surfaced status, tickets, and analytics on the home view. I chose the workspace and validated the structure in journey maps.</p></div><div class="pcards pad" data-r>
-  <div class="pcard"><h4>Unify</h4><p>One SSO access point — the infrastructure decision that made everything else possible.</p></div>
-  <div class="pcard"><h4>Simplify</h4><p>Intelligent defaults and a single information architecture across former islands.</p></div>
-  <div class="pcard"><h4>Empower</h4><p>Real-time visibility and control from one operational home view.</p></div>
-</div>
+    <div class="cs__lede pad" data-r><p>Asset detail reorganised around the operator’s mental model of the machine: availability up top, then key measurements as scannable states (“everything is fine” vs. a flagged value), then components with vibration status, then service info — a 3D model anchoring the operator in the physical machine.</p></div><figure class="schem pad" data-r>
+  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Severity-sorted fleet overview + asset-detail hierarchy of concern</p></div>
+  <figcaption>Before/after schematic — undifferentiated map-and-table vs. severity-sorted overview.</figcaption>
+</figure>
   </section>
   
   <section class="cs" id="solution">
     <header class="shead">
       <h2>The <em>design</em></h2>
-      <span class="mono">(03.4) — Solution</span>
+      <span class="mono">(04.4) — Solution</span>
     </header>
-    <div class="cs__lede pad" data-r><p>A unified portal: one login, one IA, a workspace home that surfaces what was previously stitched together by hand. The component language that built it became the design system — the part of this work that outlived the portal itself.</p></div><figure class="schem pad" data-r>
-  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Unified workspace dashboard + the IA that replaced the launcher model</p></div>
-  <figcaption>Information-architecture schematic — launcher model vs. the workspace model that shipped.</figcaption>
-</figure>
+    <div class="cs__lede pad" data-r><p>From “can you read this spectrum?” to “is it trending toward the red line?” Raw vibration plots became a clean time-series with the threshold line and week/month/year ranges. The specialist’s spectral detail still exists — it moved one click deeper.</p></div>
   </section>
   
   <section class="cs" id="outcome">
     <header class="shead">
       <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(03.5) — Outcome</span>
+      <span class="mono">(04.5) — Outcome</span>
     </header>
-    <div class="cs__lede pad" data-r><p>One hub replacing the manual stitching across six tools, and a design system adopted beyond the portal. The headline figures (adoption, time saved) are owner-confirmed operational metrics; until verified here, the case states the structural outcome rather than a number it cannot source.</p></div>
+    <div class="cs__lede pad" data-r><p>The honest framing for a craft case: rather than invent a percentage, state the designed improvement plainly — fleet triage moved from scanning an undifferentiated table to a single severity-sorted view. The number worth instrumenting next is time-to-locate a flagged asset, old versus new.</p></div>
   </section>
   
   <section class="cs" id="reflection">
     <header class="shead">
       <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(03.6) — Reflection</span>
+      <span class="mono">(04.6) — Reflection</span>
     </header>
-    <div class="cs__lede pad" data-r><p>The transferable principle: the highest-leverage design decision was the one made above the screen. Being in the architecture room is what let a design call (SSO) become the product's biggest usability win — that influence is what "senior" means in practice.</p></div>
+    <div class="cs__lede pad" data-r><p>The decisions made under constraint: severity over completeness (a specialist’s raw reading is one click deeper — the right call, since triage is many users every day and deep analysis is few users occasionally), and readable trend over raw fidelity. What I’d sharpen: validate alert thresholds and colour categories with the engineers who live in alarm fatigue.</p></div>
   </section>
 
   <!-- NEXT CASE -->
@@ -137,7 +133,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
     <div class="cnext__row" data-r>
       <div>
         <p class="cnext__lab">Next case study — 04</p>
-        <a class="cnext__title" href="case-driveradar.html">Predictive maintenance, legible at a glance<span class="orb" aria-hidden="true">→</span></a>
+        <a class="cnext__title" href="case-design-system.html">A shared product language<span class="orb" aria-hidden="true">→</span></a>
       </div>
       <a class="cnext__all" href="index.html#work">All work <span aria-hidden="true">↗</span></a>
     </div>

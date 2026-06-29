@@ -291,6 +291,45 @@ const CASES = [
     },
   },
   {
+    file: 'case-driveradar.html',
+    num: '04', kicker: 'DriveRadar · SEW-Eurodrive',
+    kind: 'Shipped',
+    title: 'Predictive maintenance, legible at a glance',
+    gTitle: "A factory’s failing machinery, <em>legible at a glance</em>",
+    desc: 'Redesigning the condition-monitoring platform engineers use to catch a gearbox failure before it stops a production line.',
+    role: 'Product / UI designer — owned the asset-overview, asset-detail, and measurement views.',
+    tags: 'DriveRadar · SEW-Eurodrive · B2B SaaS / IIoT',
+    lede: "All the data, almost none of the legibility. A map and table where every asset looked equal; failing units didn’t stand out. A missed warning isn’t bad UX — it’s a stopped production line.",
+    meta: [['Role', 'Product / UI Designer'], ['Client', 'SEW-Eurodrive'], ['Domain', 'B2B · IIoT'], ['Type', 'Shipped']],
+    sections: {
+      context: {
+        lede: 'The platform was built around the data the sensors produce, not the decision the operator has to make. Raw vibration plots — accurate, but unreadable at a glance; every measurement at the same visual weight; no hierarchy of concern.',
+        reframe: 'Design around the <em>decision</em>, not the data — demote the spectrum so a failing gearbox surfaces.',
+      },
+      research: {
+        lede: 'For a metric-light craft case the visuals are the proof. The redesign reorganises three levels of the product, each answering exactly one question and handing off cleanly to the next.',
+        html: tiers([
+          {level: 'Fleet', question: '"Where do I look?" — which assets have alerts, ranked by severity.'},
+          {level: 'Asset', question: '"What\'s wrong with this machine?" — health → measurements → components → service.'},
+          {level: 'Signal', question: '"Is this getting worse?" — one measurement trended against its threshold.'},
+        ]),
+      },
+      approach: {
+        lede: "Asset detail reorganised around the operator’s mental model of the machine: availability up top, then key measurements as scannable states (“everything is fine” vs. a flagged value), then components with vibration status, then service info — a 3D model anchoring the operator in the physical machine.",
+        html: schematic('Severity-sorted fleet overview + asset-detail hierarchy of concern', 'Before/after schematic — undifferentiated map-and-table vs. severity-sorted overview.'),
+      },
+      solution: {
+        lede: 'From “can you read this spectrum?” to “is it trending toward the red line?” Raw vibration plots became a clean time-series with the threshold line and week/month/year ranges. The specialist’s spectral detail still exists — it moved one click deeper.',
+      },
+      outcome: {
+        lede: 'The honest framing for a craft case: rather than invent a percentage, state the designed improvement plainly — fleet triage moved from scanning an undifferentiated table to a single severity-sorted view. The number worth instrumenting next is time-to-locate a flagged asset, old versus new.',
+      },
+      reflection: {
+        lede: "The decisions made under constraint: severity over completeness (a specialist’s raw reading is one click deeper — the right call, since triage is many users every day and deep analysis is few users occasionally), and readable trend over raw fidelity. What I’d sharpen: validate alert thresholds and colour categories with the engineers who live in alarm fatigue.",
+      },
+    },
+  },
+  {
     file: 'case-design-system.html',
     num: '04', kicker: 'Design Systems',
     title: 'A shared product language',

@@ -1,0 +1,151 @@
+/* ============ SWISS-GRID — artboard template canvas ============ */
+/* Loads after ../css/main.css + ../css/case.css (tokens + .board / .nums /
+   .cnext / .btn / .ph come from there). Presents 1440-wide artboards on a
+   Figma-like drafting canvas, each labelled like a frame.
+   Print = one artboard per page.
+   NB: Swiss main.css already owns `.frame` (the centred grid container), so the
+   artboard wrapper here is namespaced `.tframe` to avoid collision. */
+
+:root{--ab-w:1440px;--ab-pad:96px;--canvas:#E7E7E1;--canvas-dot:rgba(12,12,12,.06)}
+
+/* ---- the drafting canvas ---- */
+body.tpl{
+  background:var(--canvas);
+  background-image:radial-gradient(circle at 1px 1px,var(--canvas-dot) 1px,transparent 0);
+  background-size:28px 28px;
+  padding:72px 0 120px;overflow-x:auto;
+}
+
+/* shared mono label */
+.label{font:400 .62rem/1.5 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---- canvas header (screen only) ---- */
+.cv-head{width:var(--ab-w);margin:0 auto 60px;padding-inline:2px}
+.cv-head .label{display:block;margin-bottom:1.1rem}
+.cv-head h1{font:800 2.4rem/1.04 var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
+.cv-head h1 em{font-style:italic;font-weight:500;color:var(--blue)}
+.cv-head p{color:var(--ink-soft);margin-top:1rem;max-width:74ch}
+.cv-head .meta{margin-top:1.3rem;font:400 .7rem/1.6 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---- frame = label + artboard ---- */
+.tframe{width:var(--ab-w);margin:0 auto;padding-bottom:84px}
+.tframe__name{
+  display:flex;align-items:center;gap:.7rem;margin-bottom:13px;padding-left:2px;
+  font:700 .76rem/1 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--blue);
+}
+.tframe__name::before{content:"";width:9px;height:9px;background:var(--blue)}
+.tframe__name b{color:var(--ink);font-weight:700}
+.tframe__name span{color:var(--ink-faint);font-weight:400;letter-spacing:.08em}
+
+/* ---- the artboard surface ---- */
+.ab{
+  position:relative;width:var(--ab-w);background:var(--bg);
+  border:1px solid var(--rule);box-shadow:0 28px 56px rgba(12,12,12,.14);
+}
+.ab__in{position:relative;z-index:1;padding:var(--ab-pad)}
+/* Artboards are a fixed 1440px wide, so the board grid is ALWAYS desktop. Override
+   case.css's viewport breakpoints (which would otherwise reflow boards to fewer-per-row
+   whenever the canvas/browser is narrow — including during the Figma capture). */
+.ab .board--4{grid-column:span 4}
+.ab .board--5{grid-column:span 5}
+.ab .board--6{grid-column:span 6}
+.ab .board--7{grid-column:span 7}
+.ab .board--8{grid-column:span 8}
+
+/* ---- static nav bar (cover) — hard Swiss header ---- */
+.ab-nav{display:flex;align-items:stretch;border:1px solid var(--rule);margin-bottom:68px}
+.ab-nav__brand{padding:1rem 1.4rem;font:800 1rem/1.4 var(--f-disp);text-transform:uppercase;letter-spacing:.02em}
+.ab-nav__brand i{font-style:normal;color:var(--blue)}
+.ab-nav__links{flex:1;display:flex;align-items:center;gap:1.8rem;padding:1rem 1.4rem;border-inline:1px solid var(--rule);
+  font:400 .72rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.ab-nav__cta{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.4rem;
+  font:700 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.ab-nav__cta .orb{width:24px;height:24px;border:1px solid var(--ink);display:grid;place-items:center;font-size:.7rem}
+
+/* ---- artboard typography ---- */
+.ab h1{font:800 clamp(3rem,5.4vw,5rem)/.98 var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:-.02em;max-width:17ch}
+.ab h2{font:800 3.2rem/1.02 var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:-.015em;max-width:20ch}
+.ab h1 em,.ab h2 em{font-style:italic;font-weight:500;color:var(--blue)}
+.ab__lede{font-size:1.25rem;line-height:1.5;color:var(--ink-soft);max-width:54ch;margin-top:1.8rem}
+.ab__intro{font-size:1.05rem;line-height:1.6;color:var(--ink-soft);max-width:64ch;margin-top:1rem}
+.ab__head{max-width:66ch;margin-bottom:2.8rem}
+.ab__head .label{display:block;margin-bottom:1.1rem}
+
+/* ---- meta strip (cover) ---- */
+.ab-meta{display:flex;flex-wrap:wrap;margin-top:3rem;border-top:1px solid var(--rule)}
+.ab-meta div{flex:1 1 0;min-width:150px;padding:1.4rem 1.6rem 1.4rem 0;border-right:1px solid var(--rule-soft)}
+.ab-meta div+div{padding-left:1.6rem}
+.ab-meta div:last-child{border-right:0}
+.ab-meta dt{font:400 .6rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.ab-meta dd{font-size:.95rem;margin-top:.55rem}
+
+/* ---- 3-col challenge / approach / outcome (hairline grid) ---- */
+.ab-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:2.8rem}
+.ab-cols>div{background:var(--bg);padding:1.7rem}
+.ab-cols h4{font:700 .66rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:.8rem}
+.ab-cols h4 i{font-style:normal;color:var(--blue);margin-right:.4rem}
+.ab-cols p{color:var(--ink-soft);font-size:.92rem;line-height:1.55}
+
+/* metrics block top rule when sitting inside an artboard */
+.ab .nums{border-top:1px solid var(--rule)}
+
+/* footer tag inside artboard */
+.ab-foot{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:1rem;
+  font:400 .65rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* next-case row (reflection frame) — reuses .cnext__lab / .cnext__title / .orb / .btn */
+.ab-next{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-top:1rem}
+
+/* ---- master: section divider ---- */
+.ab-divider{display:flex;flex-direction:column;justify-content:center;min-height:560px}
+.ab-divider .label{margin-bottom:1.4rem}
+.ab-divider .big{font:800 clamp(7rem,15vw,13rem)/.85 var(--f-disp);font-stretch:125%;letter-spacing:-.04em;color:var(--blue)}
+.ab-divider h2{margin-top:1.2rem}
+
+/* ---- master: text + image ---- */
+.ab-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:3.5rem;align-items:center}
+.ab-split h2{font-size:2.4rem}
+.ab-split .label{display:block;margin-bottom:1rem}
+.ab-split p{color:var(--ink-soft);margin-top:1.1rem}
+.ab-split ul{margin-top:1.6rem;display:flex;flex-direction:column;gap:.75rem}
+.ab-split li{display:flex;gap:.75rem;color:var(--ink-soft);font-size:.95rem}
+.ab-split li::before{content:"";flex:none;width:7px;height:7px;background:var(--blue);margin-top:.5rem}
+/* the bare .board inherits grid-column:span 12 from case.css — keep it in its split column */
+.ab-split>.board{grid-column:auto;align-self:center}
+
+/* ---- master: pull quote ---- */
+.ab-quote{display:flex;flex-direction:column;justify-content:center;min-height:500px;align-items:flex-start}
+.ab-quote .mark{font:800 5rem/.5 var(--f-disp);color:var(--blue);margin-bottom:1.4rem}
+.ab-quote blockquote{font:500 clamp(2rem,3.4vw,2.8rem)/1.3 var(--f-disp);letter-spacing:-.01em;max-width:26ch}
+.ab-quote blockquote em{font-style:italic;color:var(--blue)}
+.ab-quote figcaption{margin-top:2.4rem}
+.ab-quote figcaption b{display:block;font-weight:500}
+.ab-quote figcaption span{font:400 .72rem/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ---- master: full-bleed image ---- */
+.ab-bleed .ab__in{padding:0}
+.ab-bleed .board{padding:0;border:0;background:none}
+.ab-bleed .board__cap{padding:1.2rem var(--ab-pad)}
+
+/* ============ print → one artboard per page ============ */
+@media print{
+  body.tpl{background:#fff;padding:0;background-image:none}
+  .cv-head{display:none}
+  @page{margin:0}      /* page SIZE is set per-file by the generator's injected @page (templates' <head>) */
+  /* break BEFORE each frame except the first: one artboard per page, no trailing blank page */
+  .tframe{padding:0;break-inside:avoid}
+  .tframe + .tframe{page-break-before:always;break-before:page}
+  .tframe__name{padding:18px 0 14px 24px;margin:0;background:#fff;color:var(--blue)}
+  .tframe__name b{color:#000}
+  .ab{box-shadow:none;border-color:rgba(12,12,12,.22)}
+  /* Chrome evaluates max-width media against a narrow viewport when printing, which
+     would trip case.css's responsive breakpoints and reflow the artboards taller.
+     Artboards are a fixed 1440px, so force the desktop board grid back on. */
+  .board--4{grid-column:span 4}
+  .board--5{grid-column:span 5}
+  .board--6{grid-column:span 6}
+  .board--7{grid-column:span 7}
+  .board--8{grid-column:span 8}
+  .ab-split>.board{grid-column:auto}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}

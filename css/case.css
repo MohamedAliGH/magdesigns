@@ -1,0 +1,211 @@
+/* ============ SWISS — case study pages ============ */
+/* Inherits every token + base component from main.css.
+   Loaded only on case-*.html pages (alongside main.css). */
+
+/* offset section tops so they clear the sticky header */
+.cpage section[id]{scroll-margin-top:clamp(4rem,9vh,5.5rem)}
+
+/* ============================================================
+   FLOATING SIDE NAV — Notion-style "On this page"
+   Idle: a column of hairline dashes (active one blue + longer).
+   Hover / focus: a bordered panel slides open with numbered labels.
+   ============================================================ */
+.toc{
+  /* hug the frame's left edge: viewport-left on narrow screens, the
+     centred frame's left rail once the viewport exceeds the 1440px frame */
+  --toc-x:clamp(.3rem,.6vw,.6rem);
+  position:fixed;left:max(var(--toc-x),calc(50vw - 720px + var(--toc-x)));top:50%;transform:translateY(-50%);
+  z-index:35;display:flex;flex-direction:column;gap:0;
+  padding:.4rem .35rem;background:transparent;border:1px solid transparent;
+  transition:background .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);
+}
+.toc:hover,.toc:focus-within{
+  background:var(--bg);border-color:var(--rule);
+  box-shadow:6px 6px 0 rgba(12,12,12,.07);
+}
+/* "Contents" caption — only visible when expanded */
+.toc__cap{
+  font:400 .55rem/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);
+  white-space:nowrap;overflow:hidden;max-height:0;opacity:0;padding-left:.5rem;
+  transition:max-height .4s var(--ease-q),opacity .3s var(--ease),margin .4s var(--ease-q);
+}
+.toc:hover .toc__cap,.toc:focus-within .toc__cap{max-height:2rem;opacity:1;margin-bottom:.55rem}
+
+.toc__item{
+  display:flex;align-items:center;gap:0;padding:.32rem .5rem;color:var(--ink-faint);
+  transition:color .3s var(--ease);
+}
+.toc__dash{
+  flex:none;width:16px;height:2px;background:var(--rule-soft);
+  transition:width .42s var(--ease-q),background .3s var(--ease);
+}
+/* text group collapses to zero width when idle */
+.toc__text{
+  display:flex;align-items:baseline;gap:.6rem;white-space:nowrap;overflow:hidden;
+  max-width:0;opacity:0;margin-left:0;
+  transition:max-width .45s var(--ease-q),opacity .32s var(--ease),margin-left .45s var(--ease-q);
+}
+.toc:hover .toc__text,.toc:focus-within .toc__text{max-width:240px;opacity:1;margin-left:.85rem}
+.toc__no{font:700 .6rem/1 var(--f-mono);letter-spacing:.06em;color:var(--ink-faint);transition:color .3s var(--ease)}
+.toc__label{font:400 .72rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;transition:color .3s var(--ease)}
+
+.toc__item:hover{color:var(--ink)}
+.toc__item.active{color:var(--ink)}
+.toc__item.active .toc__dash{background:var(--blue)}        /* idle: colour cue only — stays in the gutter */
+.toc__item.active .toc__no{color:var(--blue)}
+.toc__item.active .toc__label{color:var(--ink)}
+/* dashes lengthen only once the panel is open (it's a solid overlay then) */
+.toc:hover .toc__item:hover .toc__dash,.toc:focus-within .toc__item:hover .toc__dash{width:26px;background:var(--ink)}
+.toc:hover .toc__item.active .toc__dash,.toc:focus-within .toc__item.active .toc__dash{width:30px;background:var(--blue)}
+
+/* ============================================================
+   CASE HERO
+   ============================================================ */
+.chero{border-bottom:1px solid var(--rule)}
+.chero__top{padding-block:clamp(2.6rem,6vw,4.6rem) 2.4rem;display:flex;flex-direction:column}
+.chero__back{
+  display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;
+  font:400 .72rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  border-bottom:1px solid transparent;transition:gap .3s var(--ease-q),color .3s var(--ease),border-color .3s var(--ease);
+}
+.chero__back:hover{gap:.8rem;color:var(--blue);border-color:var(--blue)}
+.chero__tag{margin-top:2rem}
+.chero h1{
+  font-family:var(--f-disp);font-weight:800;font-stretch:125%;text-transform:uppercase;
+  font-size:clamp(2.4rem,7.2vw,6.2rem);line-height:.97;letter-spacing:-.02em;
+  margin-top:1.4rem;max-width:17ch;
+}
+.chero h1 em{font-style:italic;font-weight:500;color:var(--blue)}
+.chero__lede{margin-top:1.8rem;font-size:1.1rem;line-height:1.6;color:var(--ink-soft);max-width:56ch}
+.chero__meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule)}
+.chero__meta>div{padding:1.2rem var(--gut);border-right:1px solid var(--rule-soft)}
+.chero__meta>div:last-child{border-right:0}
+.chero__meta dt{font:400 .62rem/2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.chero__meta dd{font-size:.92rem}
+.chero__cover{padding-top:2.2rem;padding-bottom:2.6rem;border-top:1px solid var(--rule-soft)}
+
+/* ============================================================
+   CASE SECTIONS
+   ============================================================ */
+.cs{border-bottom:1px solid var(--rule)}
+.cs__lede{padding-block:2rem 1.6rem}
+.cs__lede p{font-size:1.05rem;line-height:1.65;color:var(--ink-soft);max-width:68ch}
+
+/* Challenge / Approach / Outcome — gapless hairline grid (signature Swiss) */
+.cs__cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border-block:1px solid var(--rule)}
+.cs__col{background:var(--bg);padding:1.8rem var(--gut)}
+.cs__col h4{font:700 .68rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:.8rem}
+.cs__col h4 i{font-style:normal;color:var(--blue);margin-right:.4rem}
+.cs__col p{font-size:.92rem;line-height:1.6;color:var(--ink-soft)}
+
+.cs__boards{padding-block:2.2rem 2.8rem}
+.cs__lede + .cs__boards{padding-top:.4rem}
+
+/* outcome metrics reuse .nums from main.css, just add a top rule */
+.cs .nums{border-top:1px solid var(--rule)}
+
+/* ============================================================
+   PLACEHOLDER ARTBOARDS — blueprint style
+   ============================================================ */
+.boards{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.7rem,1.5vw,1.1rem)}
+.board{
+  grid-column:span 12;position:relative;background:var(--bg);
+  border:1px solid var(--rule);padding:.5rem;
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease);
+}
+.board:hover{border-color:var(--blue);box-shadow:5px 5px 0 rgba(31,61,255,.12)}
+.board--4{grid-column:span 4}
+.board--5{grid-column:span 5}
+.board--6{grid-column:span 6}
+.board--7{grid-column:span 7}
+.board--8{grid-column:span 8}
+
+.board__frame{
+  position:relative;overflow:hidden;display:grid;place-items:center;
+  background-color:#EAEAE5;
+  background-image:repeating-linear-gradient(45deg,rgba(12,12,12,.045) 0 1px,transparent 1px 10px);
+}
+.board__frame::after{
+  content:"";position:absolute;inset:.85rem;border:1.5px dashed var(--rule-soft);pointer-events:none;
+}
+.board__ar{aspect-ratio:16/10}
+.board__ar--wide{aspect-ratio:16/9}
+.board__ar--ultra{aspect-ratio:21/9}
+.board__ar--tall{aspect-ratio:4/5}
+.board__ar--sq{aspect-ratio:1/1}
+
+.board__dim{
+  position:absolute;top:.85rem;left:.9rem;z-index:1;
+  font:400 .56rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
+}
+.board__center{display:flex;flex-direction:column;align-items:center;gap:.95rem;text-align:center;padding:1.6rem;z-index:1}
+.board__glyph{
+  width:46px;height:46px;display:grid;place-items:center;background:var(--bg);
+  border:1px solid var(--rule);color:var(--ink-soft);font:400 1.35rem/1 var(--f-disp);
+  transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
+}
+.board:hover .board__glyph{background:var(--blue);color:#fff;border-color:var(--blue)}
+.board__name{font-size:.95rem;line-height:1.4;color:var(--ink-soft);max-width:34ch}
+.board__tag{
+  font:400 .56rem/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  border:1px dashed var(--ink-faint);padding:.34rem .6rem;
+}
+.board__cap{padding:.9rem .55rem .3rem;font-size:.85rem;color:var(--ink-faint)}
+.board__cap b{margin-right:.5rem;font:700 .62rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+
+/* ============================================================
+   NEXT CASE + FOOTER
+   ============================================================ */
+.cnext{border-bottom:1px solid var(--rule)}
+.cnext__row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;padding:clamp(2.6rem,5vw,4rem) var(--gut)}
+.cnext__lab{font:400 .62rem/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1rem}
+.cnext__title{
+  display:inline-flex;align-items:center;gap:1rem;
+  font:800 clamp(1.7rem,4vw,3rem)/1 var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em;
+  transition:color .35s var(--ease),gap .35s var(--ease-q);
+}
+.cnext__title:hover{color:var(--blue);gap:1.4rem}
+.cnext__title .orb{
+  width:42px;height:42px;flex:none;border:1px solid currentColor;display:grid;place-items:center;font-size:1rem;
+}
+.cnext__all{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font:700 .74rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:1rem 1.3rem;position:relative;isolation:isolate;
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.cnext__all::after{content:"";position:absolute;inset:0;background:var(--blue);z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.cnext__all:hover{color:#fff;border-color:var(--blue)}
+.cnext__all:hover::after{transform:scaleX(1)}
+
+.cfoot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.1rem var(--gut);
+  font:400 .65rem/1.6 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.cfoot a{transition:color .3s var(--ease)}
+.cfoot a:hover{color:var(--blue)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1200px){
+  .toc{display:none}
+}
+@media(max-width:1000px){
+  .board--4,.board--5,.board--6,.board--7,.board--8{grid-column:span 6}
+  .chero__meta{grid-template-columns:repeat(2,1fr)}
+  .chero__meta>div:nth-child(2){border-right:0}
+  .chero__meta>div:nth-child(-n+2){border-bottom:1px solid var(--rule-soft)}
+}
+@media(max-width:820px){
+  .cs__cols{grid-template-columns:1fr}
+  .cs__col{border-bottom:1px solid var(--rule-soft)}
+  .cs__col:last-child{border-bottom:0}
+}
+@media(max-width:640px){
+  .board--4,.board--5,.board--6,.board--7,.board--8{grid-column:span 12}
+  .chero__meta{grid-template-columns:1fr}
+  .chero__meta>div{border-right:0;border-bottom:1px solid var(--rule-soft)}
+  .chero__meta>div:last-child{border-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .board:hover{transform:none}
+}

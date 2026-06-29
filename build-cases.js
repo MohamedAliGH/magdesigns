@@ -12,8 +12,8 @@ const ph = t => `<i class="ph" title="${t}">${t.startsWith('Placeholder') ? 'tbd
 /* the floating "On this page" navigation (same on every case) */
 const SECTIONS = [
   { id: 'overview',   label: 'Overview' },
-  { id: 'context',    label: 'Context' },
-  { id: 'research',   label: 'Research' },
+  { id: 'context',    label: 'Problem' },
+  { id: 'research',   label: 'Evidence' },
   { id: 'approach',   label: 'Approach' },
   { id: 'solution',   label: 'The design' },
   { id: 'outcome',    label: 'Outcome' },
@@ -102,6 +102,48 @@ const section = (id, h2, no, label, body) => `
     ${body}
   </section>`;
 
+/* ---------- bespoke evidence components (no screenshots, no fake data) ---------- */
+const optsTable = (rows) => `<div class="opts pad" data-r>
+  ${rows.map(r => `<div class="opts__row${r.won ? ' opts__row--won' : ''}">
+    <div class="opts__name">${r.name}${r.won ? '<span class="opts__flag">Shipped</span>' : ''}</div>
+    <div class="opts__explored">${r.explored}</div>
+    <div class="opts__verdict">${r.won ? '✓ ' : '✗ '}${r.verdict}</div>
+  </div>`).join('\n  ')}
+</div>`;
+
+const statBlock = (stats) => `<div class="statblock pad" data-r>
+  ${stats.map(s => `<div class="statblock__item"><b>${s.big}</b><span>${s.label}</span>${s.note ? `<small>${s.note}</small>` : ''}</div>`).join('\n  ')}
+</div>`;
+
+const metricTree = (title, nodes) => `<div class="mtree pad" data-r>
+  <p class="mtree__cap">${title} — <i>projected / hypotheses</i></p>
+  <ul class="mtree__list">
+    ${nodes.map(n => `<li><b>${n.metric}</b><span>${n.role}</span></li>`).join('\n    ')}
+  </ul>
+</div>`;
+
+const axis = (l, r, zone) => `<div class="axis pad" data-r>
+  <div class="axis__bar"><span class="axis__zone"><span class="axis__zonelab">${zone}</span></span></div>
+  <div class="axis__ends"><span>${l}</span><span>${r}</span></div>
+</div>`;
+
+const tiers = (rows) => `<ol class="tiers pad" data-r>
+  ${rows.map((t, i) => `<li class="tiers__row"><span class="tiers__no">${String(i + 1).padStart(2, '0')}</span><b>${t.level}</b><span class="tiers__q">${t.question}</span></li>`).join('\n  ')}
+</ol>`;
+
+const seq = (stages) => `<div class="seq pad" data-r>
+  ${stages.map(s => `<div class="seq__row"><span class="seq__n">${s.n}</span><div class="seq__c"><b>User</b><p>${s.user}</p></div><div class="seq__c"><b>System</b><p>${s.system}</p></div></div>`).join('\n  ')}
+</div>`;
+
+const cards = (items) => `<div class="pcards pad" data-r>
+  ${items.map(c => `<div class="pcard"><h4>${c.h}</h4><p>${c.p}</p></div>`).join('\n  ')}
+</div>`;
+
+const schematic = (title, note) => `<figure class="schem pad" data-r>
+  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">${title}</p></div>
+  ${note ? `<figcaption>${note}</figcaption>` : ''}
+</figure>`;
+
 /* ---------- per-case content ---------- */
 const CASES = [
   {
@@ -122,15 +164,30 @@ const CASES = [
       },
       research: {
         lede: 'Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.',
+        html: statBlock([
+          {big:'12%', label:'Lost at the carousel step', note:'pre-redesign funnel analysis'},
+          {big:'n=6', label:'Moderated usability sessions', note:'why the drop-off happened'},
+          {big:'WCAG', label:'Carousel fails discoverability + keyboard/SR support'},
+        ]),
       },
       approach: {
         lede: 'I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.',
+        html: optsTable([
+          {name:'Enhanced carousel', explored:'Arrows, dots, auto-scroll previews, callouts', verdict:'Did not fix accessibility; complexity without comprehension'},
+          {name:'Full-screen stepper', explored:'One step per screen, linear wizard', verdict:'Hid the full journey — the exact problem; raised perceived effort; needed custom components'},
+          {name:'Vertical disclosure cards', explored:'All steps visible; details on demand', verdict:'Solved discoverability and accessibility; reused a DS component', won:true},
+        ]),
       },
       solution: {
         lede: 'Every step visible at a glance, details on demand. Vertical disclosure cards: 100% of steps shown immediately, each expanding for detail only when needed — scroll-based, keyboard- and screen-reader-accessible, no swipe to discover.',
       },
       outcome: {
         lede: 'Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.',
+        html: metricTree("How I’d prove it", [
+          {metric:'Stage-completion rate', role:'primary — variant vs. carousel, holdout split'},
+          {metric:'Time-to-first-doubt', role:'secondary — momentum signal'},
+          {metric:'Accessibility conformance', role:'keyboard + screen-reader pass'},
+        ]),
       },
       reflection: {
         lede: 'The trade-off I chose: visibility over visual novelty. A carousel looks more modern; honest visibility serves the brand better, because "easy" is a core value and a transparent funnel makes it literal. What I would measure next: stage-completion rate of this variant against the carousel in a holdout split, with time-to-first-doubt as a secondary signal.',

@@ -47,8 +47,8 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Context</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Research</span></span></a>
+    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
     <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
     <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
     <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
@@ -86,7 +86,11 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>Evidence &amp; <em>discovery</em></h2>
       <span class="mono">(01.2) — Evidence</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.</p></div>
+    <div class="cs__lede pad" data-r><p>Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.</p></div><div class="statblock pad" data-r>
+  <div class="statblock__item"><b>12%</b><span>Lost at the carousel step</span><small>pre-redesign funnel analysis</small></div>
+  <div class="statblock__item"><b>n=6</b><span>Moderated usability sessions</span><small>why the drop-off happened</small></div>
+  <div class="statblock__item"><b>WCAG</b><span>Carousel fails discoverability + keyboard/SR support</span></div>
+</div>
   </section>
   
   <section class="cs" id="approach">
@@ -94,7 +98,23 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>The <em>approach</em></h2>
       <span class="mono">(01.3) — Approach</span>
     </header>
-    <div class="cs__lede pad" data-r><p>I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.</p></div>
+    <div class="cs__lede pad" data-r><p>I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.</p></div><div class="opts pad" data-r>
+  <div class="opts__row">
+    <div class="opts__name">Enhanced carousel</div>
+    <div class="opts__explored">Arrows, dots, auto-scroll previews, callouts</div>
+    <div class="opts__verdict">✗ Did not fix accessibility; complexity without comprehension</div>
+  </div>
+  <div class="opts__row">
+    <div class="opts__name">Full-screen stepper</div>
+    <div class="opts__explored">One step per screen, linear wizard</div>
+    <div class="opts__verdict">✗ Hid the full journey — the exact problem; raised perceived effort; needed custom components</div>
+  </div>
+  <div class="opts__row opts__row--won">
+    <div class="opts__name">Vertical disclosure cards<span class="opts__flag">Shipped</span></div>
+    <div class="opts__explored">All steps visible; details on demand</div>
+    <div class="opts__verdict">✓ Solved discoverability and accessibility; reused a DS component</div>
+  </div>
+</div>
   </section>
   
   <section class="cs" id="solution">
@@ -110,7 +130,14 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <h2>Outcome &amp; <em>what I'd measure</em></h2>
       <span class="mono">(01.5) — Outcome</span>
     </header>
-    <div class="cs__lede pad" data-r><p>Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.</p></div>
+    <div class="cs__lede pad" data-r><p>Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.</p></div><div class="mtree pad" data-r>
+  <p class="mtree__cap">How I’d prove it — <i>projected / hypotheses</i></p>
+  <ul class="mtree__list">
+    <li><b>Stage-completion rate</b><span>primary — variant vs. carousel, holdout split</span></li>
+    <li><b>Time-to-first-doubt</b><span>secondary — momentum signal</span></li>
+    <li><b>Accessibility conformance</b><span>keyboard + screen-reader pass</span></li>
+  </ul>
+</div>
   </section>
   
   <section class="cs" id="reflection">

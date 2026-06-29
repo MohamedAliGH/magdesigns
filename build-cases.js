@@ -248,24 +248,47 @@ const CASES = [
   },
   {
     file: 'case-platform.html',
-    num: '03', kicker: 'B2B · Platform',
-    title: '0 → 1 solution',
-    gTitle: '0 → 1 <em>solution</em>',
-    desc: 'Unifying a fragmented enterprise ecosystem into a scalable operational hub — a B2B 0→1 case study.',
-    lede: 'Operations lived across disconnected tools. The goal: one scalable hub, designed from workflows rather than features.',
-    meta: [['Role', 'Sr. Product Designer'], ['Year', '2022–23 ' + ph('Placeholder — confirm years')], ['Domain', 'Enterprise platform'], ['Outcome', 'n tools → 1 hub ' + ph('Placeholder — verify')]],
-    challenge: 'Operations lived across disconnected tools — duplicated data, duplicated work, no shared source of truth.',
-    approach: 'Started from workflows, not features: shadowed operators and designed a modular IA that scales by composition.',
-    outcome: 'A 0→1 hub adopted as the foundation for the product line.',
-    research: 'On-site operator shadowing, tool inventory and a workflow-mapping workshop to surface the real (not documented) process.',
-    designIntro: 'The information architecture and the core operational surfaces of the unified hub.',
-    designBoards: [
-      { span: 7, ar: 'wide', name: 'Information architecture map', dim: '1600 × 900', glyph: '⊞', cap: 'Modular IA that scales by composition.', capTitle: 'Fig. 1' },
-      { span: 5, ar: 'wide', name: 'Workflow-mapping artefact', dim: '1280 × 720', glyph: '⇄', cap: 'Synthesised from operator shadowing.', capTitle: 'Fig. 2' },
-      { span: 12, ar: 'ultra', name: 'Operational hub — primary dashboard', dim: '1920 × 820', glyph: '▦', cap: 'One source of truth across former tools.', capTitle: 'Fig. 3' },
-      { span: 6, ar: null, name: 'Modular module — detail view', dim: '1440 × 900', glyph: '◧', cap: 'Composable building block.', capTitle: 'Fig. 4' },
-      { span: 6, ar: null, name: 'Cross-tool data model', dim: '1440 × 900', glyph: '⊟', cap: 'Unified entities, deduplicated.', capTitle: 'Fig. 5' },
-    ],
+    num: '03', kicker: 'VIER · Enterprise SaaS',
+    kind: 'Shipped',
+    title: 'From five products to one operational hub',
+    gTitle: "Five products that behaved like <em>five startups</em>",
+    desc: "Turning a fragmented enterprise ecosystem into one operational hub — and founding the design system that outlived the portal itself.",
+    role: 'Owned IA + portal UX; founded the design system; specced the SSO UX (engineering led SSO).',
+    tags: 'VIER · Enterprise SaaS (B2B)',
+    lede: 'Six products — routing, analytics, forecasting, monitoring, bots, ticketing — each its own island: multiple logins, manually stitched KPIs, tickets in separate environments. The obvious read was "inconsistent UI." It was infrastructure.',
+    meta: [['Role', 'Sr. Product Designer'], ['Client', 'VIER'], ['Domain', 'Enterprise SaaS'], ['Type', 'Shipped']],
+    sections: {
+      context: {
+        lede: 'Fragmentation looked like a UX problem. The cause was no shared authentication, no shared information architecture, no shared component language — so every fix was local and the experience kept drifting apart.',
+        reframe: 'The biggest usability win — single sign-on — was an <em>infrastructure</em> decision, made because design was in architecture conversations it is usually not invited to.',
+      },
+      research: {
+        lede: 'Grounded in research, not assumption. The recurring line across nearly every interview: "I just want everything in one place."',
+        html: statBlock([
+          {big:'18', label:'User interviews', note:'+ 5 workshops, 4 journey maps'},
+          {big:'4.2', label:'Systems per user, on average'},
+          {big:'~45min', label:'Lost per day navigating between tools'},
+        ]),
+      },
+      approach: {
+        lede: 'Three pillars — and the real work underneath them was the information architecture: I weighed an app-launcher model (a grid of products that kept silos one click away) against a workspace model that surfaced status, tickets, and analytics on the home view. I chose the workspace and validated the structure in journey maps.',
+        html: cards([
+          {h:'Unify', p:'One SSO access point — the infrastructure decision that made everything else possible.'},
+          {h:'Simplify', p:'Intelligent defaults and a single information architecture across former islands.'},
+          {h:'Empower', p:'Real-time visibility and control from one operational home view.'},
+        ]),
+      },
+      solution: {
+        lede: "A unified portal: one login, one IA, a workspace home that surfaces what was previously stitched together by hand. The component language that built it became the design system — the part of this work that outlived the portal itself.",
+        html: schematic('Unified workspace dashboard + the IA that replaced the launcher model', 'Information-architecture schematic — launcher model vs. the workspace model that shipped.'),
+      },
+      outcome: {
+        lede: 'One hub replacing the manual stitching across six tools, and a design system adopted beyond the portal. The headline figures (adoption, time saved) are owner-confirmed operational metrics; until verified here, the case states the structural outcome rather than a number it cannot source.',
+      },
+      reflection: {
+        lede: "The transferable principle: the highest-leverage design decision was the one made above the screen. Being in the architecture room is what let a design call (SSO) become the product's biggest usability win — that influence is what \"senior\" means in practice.",
+      },
+    },
   },
   {
     file: 'case-design-system.html',

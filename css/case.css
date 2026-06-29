@@ -243,7 +243,7 @@
 .mtree__list span{font-size:.85rem;color:var(--ink-soft)}
 .axis{margin-block:1.6rem}
 .axis__bar{position:relative;height:2px;background:var(--rule);margin:2.4rem 0 .8rem}
-.axis__zone{position:absolute;left:38%;width:24%;top:-9px;height:20px;border:1.5px solid var(--blue);background:rgba(31,61,255,.06)}
+.axis__zone{position:absolute;left:38%;width:24%;top:-9px;height:20px;border:1.5px solid var(--blue);background:color-mix(in srgb, var(--blue) 6%, transparent)}
 .axis__zonelab{position:absolute;left:50%;top:-1.7rem;transform:translateX(-50%);white-space:nowrap;
   font:700 .6rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
 .axis__ends{display:flex;justify-content:space-between;font:400 .8rem/1 var(--f-mono);letter-spacing:.04em;color:var(--ink-soft)}

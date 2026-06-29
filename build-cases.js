@@ -7,7 +7,6 @@ const fs = require('fs');
 const path = require('path');
 
 /* ---------- shared partials ---------- */
-const ph = t => `<i class="ph" title="${t}">${t.startsWith('Placeholder') ? 'tbd' : 'draft'}</i>`;
 
 /* the floating "On this page" navigation (same on every case) */
 const SECTIONS = [

@@ -14,7 +14,7 @@
 | Decision | Choice |
 |---|---|
 | Hosting | **GitHub Pages**, deployed from `main` branch, repo root |
-| Repo name | **`magdesign-portfolio`** → live at `https://mohamedalighouila.github.io/magdesign-portfolio/` (unrelated to the stale local scaffold dir of the same name — that dir is not this repo) |
+| Repo name | **`magdesigns`** → live at `https://mohamedalighouila.github.io/magdesigns/` |
 | Repo visibility | **Public** — free GitHub Pages requires a public repo (Pro/Team needed for private-repo Pages, owner does not have it) |
 | Case-study versioning | **Branch per case study** (`case/<name>`) — build + verify on branch, merge to `main` to go live |
 | First case study | **easyCredit, Figma deck V4** ("real story" / progressive-disclosure thesis, `ms6a8Br6n28g6BJDZBdyIH` §992:2). Pending FILL items already resolved by owner. |
@@ -70,8 +70,8 @@ main redeploys automatically (GitHub Pages rebuilds on push to the Pages source 
 
 **Sequence:**
 1. Commit current uncommitted work on `go-live` (edits only — no reset/worktree ops, per existing safety rule) before branching further, so nothing in flight is lost.
-2. Create GitHub repo `magdesign-portfolio` (public), add as `origin`.
-3. Push `main`. Repo Settings → Pages → source = `main` / root. Site live at `https://mohamedalighouila.github.io/magdesign-portfolio/`.
+2. Create GitHub repo `magdesigns` (public), add as `origin`.
+3. Push `main`. Repo Settings → Pages → source = `main` / root. Site live at `https://mohamedalighouila.github.io/magdesigns/`.
 4. Branch `case/easycredit-v4` off `main`.
 5. Do the export + wiring (§3) on that branch. Verify locally.
 6. Merge `case/easycredit-v4` → `main` → push → Pages auto-redeploys.

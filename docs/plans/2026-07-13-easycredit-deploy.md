@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Deploy the `03-Swiss-Grid` portfolio to GitHub Pages (public repo `magdesign-portfolio`) and ship easyCredit deck V4 as the real slide deck on `case-funnel.html`.
+**Goal:** Deploy the `03-Swiss-Grid` portfolio to GitHub Pages (public repo `magdesigns`) and ship easyCredit deck V4 as the real slide deck on `case-funnel.html`.
 
 **Architecture:** Reconcile the working tree, fast-forward `main` to the current content, push to a new public GitHub repo, enable Pages. Then, on a dedicated branch, export the 8 easyCredit V4 slides from Figma via MCP, wire them into `case-funnel`'s existing `slides` mechanism (same one `case-driveradar` already uses), and merge to `main` to go live.
 
@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Design spec: `docs/specs/2026-07-13-easycredit-deploy-design.md` (approved).
-- Repo name: `magdesign-portfolio`. GitHub user: `mohamedalighouila`. Live URL: `https://mohamedalighouila.github.io/magdesign-portfolio/`.
+- Repo name: `magdesigns`. GitHub user: `mohamedalighouila`. Live URL: `https://mohamedalighouila.github.io/magdesigns/`.
 - Repo visibility: **public** (free GitHub Pages requires it — no GitHub Pro).
 - Branch-per-case-study: `main` always mirrors the live site; each case ships from its own `case/<name>` branch merged to `main`.
 - **Never use `git reset --hard`, `git worktree`, or any destructive git op in this plan or in any subagent executing it.** Edits + regular commits only.
@@ -120,12 +120,12 @@ Expected: shows the `chore: sync go-live working tree before deploy setup` commi
 
 **Interfaces:** Consumes: `main` branch from Task 2, containing the full working site.
 
-- [ ] **Step 1 (manual, owner does this in a browser):** Go to github.com → New repository → name `magdesign-portfolio` → **Public** → do **not** initialize with README/.gitignore/license (avoids an unrelated initial commit that would conflict with the push below) → Create repository.
+- [ ] **Step 1 (manual, owner does this in a browser):** Go to github.com → New repository → name `magdesigns` → **Public** → do **not** initialize with README/.gitignore/license (avoids an unrelated initial commit that would conflict with the push below) → Create repository.
 
 - [ ] **Step 2: Add the remote**
 
 ```bash
-git remote add origin https://github.com/mohamedalighouila/magdesign-portfolio.git
+git remote add origin https://github.com/mohamedalighouila/magdesigns.git
 ```
 
 - [ ] **Step 3: Push `main`**
@@ -141,7 +141,7 @@ Expected: push succeeds, output includes `branch 'main' set up to track 'origin/
 
 Run (retry with a short wait if it 404s — first Pages build can take a minute or two):
 ```bash
-sleep 60 && curl -s -o /dev/null -w "%{http_code}\n" https://mohamedalighouila.github.io/magdesign-portfolio/
+sleep 60 && curl -s -o /dev/null -w "%{http_code}\n" https://mohamedalighouila.github.io/magdesigns/
 ```
 Expected: `200`
 
@@ -342,10 +342,10 @@ git push origin v1.0-easycredit
 - [ ] **Step 3: Verify the live site**
 
 ```bash
-sleep 60 && curl -s https://mohamedalighouila.github.io/magdesign-portfolio/case-funnel.html | grep -c "img/decks/easycredit/"
+sleep 60 && curl -s https://mohamedalighouila.github.io/magdesigns/case-funnel.html | grep -c "img/decks/easycredit/"
 ```
 Expected: `8`
 
 - [ ] **Step 4: Manual final check (owner)**
 
-Open `https://mohamedalighouila.github.io/magdesign-portfolio/case-funnel.html` and `https://mohamedalighouila.github.io/magdesign-portfolio/` in a browser. Confirm: the funnel case shows the real 8-slide deck; the homepage's easyCredit card links to it correctly; no other case page regressed.
+Open `https://mohamedalighouila.github.io/magdesigns/case-funnel.html` and `https://mohamedalighouila.github.io/magdesigns/` in a browser. Confirm: the funnel case shows the real 8-slide deck; the homepage's easyCredit card links to it correctly; no other case page regressed.

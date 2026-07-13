@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css?v=288f5b1b" />
+<link rel="stylesheet" href="css/case.css?v=288f5b1b" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -47,12 +47,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#reflection"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,79 +73,25 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="cs" id="context">
-    <header class="shead">
-      <h2>The <em>problem</em></h2>
-      <span class="mono">(01.1) — Problem</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Steps lived behind a horizontal swipe; discoverability relied on a gesture many users never made. People committed, then discovered more steps late — and that surprise broke momentum at the worst point in a high-anxiety flow.</p></div><div class="pq pad" data-r><p>Not a styling problem — a trust problem. Hidden effort costs <em>belief</em>, and belief is what carries a user through a high-stakes flow.</p></div>
-  </section>
-  
-  <section class="cs" id="research">
-    <header class="shead">
-      <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(01.2) — Evidence</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Three inputs, not a pattern preference: a funnel audit located the drop-off precisely at the carousel step; a small moderated test explained why; and a WCAG review confirmed carousels score poorly on discoverability, keyboard, and screen-reader support.</p></div><div class="statblock pad" data-r>
-  <div class="statblock__item"><b>12%</b><span>Lost at the carousel step</span><small>pre-redesign funnel analysis</small></div>
-  <div class="statblock__item"><b>n=6</b><span>Moderated usability sessions</span><small>why the drop-off happened</small></div>
-  <div class="statblock__item"><b>WCAG</b><span>Carousel fails discoverability + keyboard/SR support</span></div>
-</div>
-  </section>
-  
-  <section class="cs" id="approach">
-    <header class="shead">
-      <h2>The <em>approach</em></h2>
-      <span class="mono">(01.3) — Approach</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>I explored three directions and killed two — an enhanced carousel (more controls, same comprehension problem), a full-screen stepper (hid the full journey, the exact problem, and needed custom components), and vertical disclosure cards (all steps visible, details on demand). The cards shipped.</p></div><div class="opts pad" data-r>
-  <div class="opts__row">
-    <div class="opts__name">Enhanced carousel</div>
-    <div class="opts__explored">Arrows, dots, auto-scroll previews, callouts</div>
-    <div class="opts__verdict">✗ Did not fix accessibility; complexity without comprehension</div>
-  </div>
-  <div class="opts__row">
-    <div class="opts__name">Full-screen stepper</div>
-    <div class="opts__explored">One step per screen, linear wizard</div>
-    <div class="opts__verdict">✗ Hid the full journey — the exact problem; raised perceived effort; needed custom components</div>
-  </div>
-  <div class="opts__row opts__row--won">
-    <div class="opts__name">Vertical disclosure cards<span class="opts__flag">Shipped</span></div>
-    <div class="opts__explored">All steps visible; details on demand</div>
-    <div class="opts__verdict">✓ Solved discoverability and accessibility; reused a DS component</div>
-  </div>
-</div>
-  </section>
-  
-  <section class="cs" id="solution">
-    <header class="shead">
-      <h2>The <em>design</em></h2>
-      <span class="mono">(01.4) — Solution</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Every step visible at a glance, details on demand. Vertical disclosure cards: 100% of steps shown immediately, each expanding for detail only when needed — scroll-based, keyboard- and screen-reader-accessible, no swipe to discover.</p></div>
-  </section>
-  
-  <section class="cs" id="outcome">
-    <header class="shead">
-      <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(01.5) — Outcome</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Shipped to production on an existing design-system component — faster to ship, lower to maintain, accessible by inheritance. The pre-redesign drop-off concentrated at the carousel step; the post-launch result is being instrumented, so this case states the measurement plan rather than a lift it cannot yet defend honestly.</p></div><div class="mtree pad" data-r>
-  <p class="mtree__cap">How I’d prove it — <i>projected / hypotheses</i></p>
-  <ul class="mtree__list">
-    <li><b>Stage-completion rate</b><span>primary — variant vs. carousel, holdout split</span></li>
-    <li><b>Time-to-first-doubt</b><span>secondary — momentum signal</span></li>
-    <li><b>Accessibility conformance</b><span>keyboard + screen-reader pass</span></li>
-  </ul>
-</div>
-  </section>
-  
-  <section class="cs" id="reflection">
-    <header class="shead">
-      <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(01.6) — Reflection</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The trade-off I chose: visibility over visual novelty. A carousel looks more modern; honest visibility serves the brand better, because "easy" is a core value and a transparent funnel makes it literal. What I would measure next: stage-completion rate of this variant against the carousel in a holdout split, with time-to-first-doubt as a secondary signal.</p></div>
+  <section class="deck" aria-label="Removing friction from a high-stakes credit funnel — deck (slides in progress)">
+    <figure class="slide slide--ph" id="slide-1" data-r aria-label="Problem — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">01</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-2" data-r aria-label="Evidence — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">02</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-3" data-r aria-label="Approach — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">03</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-4" data-r aria-label="The design — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">04</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-5" data-r aria-label="Outcome — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">05</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-6" data-r aria-label="Reflection — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">06</span></div>
+    </figure>
   </section>
 
   <!-- NEXT CASE -->
@@ -167,7 +113,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js?v=288f5b1b" defer></script>
+<script src="js/case.js?v=288f5b1b" defer></script>
 </body>
 </html>

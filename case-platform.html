@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css?v=288f5b1b" />
+<link rel="stylesheet" href="css/case.css?v=288f5b1b" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -47,12 +47,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#reflection"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,63 +73,25 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="cs" id="context">
-    <header class="shead">
-      <h2>The <em>problem</em></h2>
-      <span class="mono">(03.1) — Problem</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Fragmentation looked like a UX problem. The cause was no shared authentication, no shared information architecture, no shared component language — so every fix was local and the experience kept drifting apart.</p></div><div class="pq pad" data-r><p>The biggest usability win — single sign-on — was an <em>infrastructure</em> decision, made because design was in architecture conversations it is usually not invited to.</p></div>
-  </section>
-  
-  <section class="cs" id="research">
-    <header class="shead">
-      <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(03.2) — Evidence</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Grounded in research, not assumption. The recurring line across nearly every interview: "I just want everything in one place."</p></div><div class="statblock pad" data-r>
-  <div class="statblock__item"><b>18</b><span>User interviews</span><small>+ 5 workshops, 4 journey maps</small></div>
-  <div class="statblock__item"><b>4.2</b><span>Systems per user, on average</span></div>
-  <div class="statblock__item"><b>~45min</b><span>Lost per day navigating between tools</span></div>
-</div>
-  </section>
-  
-  <section class="cs" id="approach">
-    <header class="shead">
-      <h2>The <em>approach</em></h2>
-      <span class="mono">(03.3) — Approach</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Three pillars — and the real work underneath them was the information architecture: I weighed an app-launcher model (a grid of products that kept silos one click away) against a workspace model that surfaced status, tickets, and analytics on the home view. I chose the workspace and validated the structure in journey maps.</p></div><div class="pcards pad" data-r>
-  <div class="pcard"><h4>Unify</h4><p>One SSO access point — the infrastructure decision that made everything else possible.</p></div>
-  <div class="pcard"><h4>Simplify</h4><p>Intelligent defaults and a single information architecture across former islands.</p></div>
-  <div class="pcard"><h4>Empower</h4><p>Real-time visibility and control from one operational home view.</p></div>
-</div>
-  </section>
-  
-  <section class="cs" id="solution">
-    <header class="shead">
-      <h2>The <em>design</em></h2>
-      <span class="mono">(03.4) — Solution</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>A unified portal: one login, one IA, a workspace home that surfaces what was previously stitched together by hand. The component language that built it became the design system — the part of this work that outlived the portal itself.</p></div><figure class="schem pad" data-r>
-  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Unified workspace dashboard + the IA that replaced the launcher model</p></div>
-  <figcaption>Information-architecture schematic — launcher model vs. the workspace model that shipped.</figcaption>
-</figure>
-  </section>
-  
-  <section class="cs" id="outcome">
-    <header class="shead">
-      <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(03.5) — Outcome</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>One hub replacing the manual stitching across six tools, and a design system adopted beyond the portal. The headline figures (adoption, time saved) are owner-confirmed operational metrics; until verified here, the case states the structural outcome rather than a number it cannot source.</p></div>
-  </section>
-  
-  <section class="cs" id="reflection">
-    <header class="shead">
-      <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(03.6) — Reflection</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The transferable principle: the highest-leverage design decision was the one made above the screen. Being in the architecture room is what let a design call (SSO) become the product's biggest usability win — that influence is what "senior" means in practice.</p></div>
+  <section class="deck" aria-label="From five products to one operational hub — deck (slides in progress)">
+    <figure class="slide slide--ph" id="slide-1" data-r aria-label="Problem — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">01</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-2" data-r aria-label="Evidence — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">02</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-3" data-r aria-label="Approach — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">03</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-4" data-r aria-label="The design — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">04</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-5" data-r aria-label="Outcome — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">05</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-6" data-r aria-label="Reflection — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">06</span></div>
+    </figure>
   </section>
 
   <!-- NEXT CASE -->
@@ -151,7 +113,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js?v=288f5b1b" defer></script>
+<script src="js/case.js?v=288f5b1b" defer></script>
 </body>
 </html>

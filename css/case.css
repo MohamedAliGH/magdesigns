@@ -6,6 +6,32 @@
 .cpage section[id]{scroll-margin-top:clamp(4rem,9vh,5.5rem)}
 
 /* ============================================================
+   CASE DECK — full-width slide-by-slide reader
+   Renders the real exported Figma deck slides (16:9), one per row.
+   Scroll = advance through the deck; the side-nav scroll-spies each slide.
+   ============================================================ */
+.deck{padding-block:clamp(1.8rem,5vw,3.2rem) 1rem}
+/* slides fill the same content column as the hero/sections (var(--gut) rail),
+   so their left/right edges line up with the rest of the page */
+.slide{
+  scroll-margin-top:clamp(4rem,9vh,5.5rem);
+  padding-inline:var(--gut);
+  margin-block:clamp(1.3rem,3.4vw,2.4rem);
+}
+.slide:first-child{margin-top:0}
+.slide__img{
+  display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;
+  background:var(--bg);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:0 24px 60px -30px rgba(13,13,15,.22),0 4px 14px -9px rgba(13,13,15,.10);
+}
+.slide__cap{
+  margin-top:.8rem;display:flex;align-items:baseline;gap:.7rem;
+  font:400 .72rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+}
+.slide__no{font-weight:700;color:var(--blue)}
+@media (max-width:640px){.slide__img{border-radius:8px}}
+
+/* ============================================================
    FLOATING SIDE NAV — Notion-style "On this page"
    Idle: a column of hairline dashes (active one blue + longer).
    Hover / focus: a bordered panel slides open with numbered labels.
@@ -271,3 +297,30 @@
   .opts__row,.statblock,.seq__row,.pcards{grid-template-columns:1fr}
   .opts__row>*{border-bottom:0}
 }
+
+/* ============================================================
+   LINE REDUCTION — Swiss "A" (matches homepage decision)
+   Drop vertical subdivisions; soften heavy internal ink grids
+   to the hairline rule. Keep section framing + floating TOC.
+   Appended last so it's easy to tune or revert.
+   ============================================================ */
+/* case-hero meta strip: keep the top rule, drop vertical dividers */
+.chero__meta>div{border-right:0}
+/* evidence tables: full-ink internal grids -> soft hairline (same structure, less weight) */
+.opts,.opts__row,.statblock,.seq,.pcards,.tiers,.mtree__list,.cs__cols{background:var(--rule-soft)}
+.opts,.statblock,.seq,.pcards,.tiers,.cs__cols{border-block-color:var(--rule-soft)}
+.mtree__list{border-color:var(--rule-soft)}
+
+/* ============================================================
+   PLACEHOLDER DECK SLIDES — vertical reader awaiting Figma exports
+   ============================================================ */
+/* blank 16:9 frames — empty on purpose; Figma slide exports drop straight in */
+.slide--ph .slide__frame{
+  position:relative;aspect-ratio:16/9;
+  border:1px solid var(--rule-soft);border-radius:12px;
+  background-color:#EDEDE8;
+  background-image:repeating-linear-gradient(45deg,rgba(12,12,12,.035) 0 1px,transparent 1px 12px);
+}
+.slide--ph .slide__phnum{position:absolute;top:1rem;left:1.1rem;
+  font:700 .7rem/1 var(--f-mono);letter-spacing:.1em;color:var(--ink-faint);opacity:.6}
+@media(max-width:640px){.slide--ph .slide__frame{border-radius:8px}}

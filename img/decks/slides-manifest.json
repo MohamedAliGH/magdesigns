@@ -1,0 +1,18 @@
+{
+  "_note": "Maps Figma deck slides -> local case-page images. To re-sync after editing a deck in Figma, re-export each node via Figma MCP get_screenshot (maxDimension 2400) and curl the PNG into the listed file. Driven by a Claude + Figma session, not a plain node script.",
+  "fileKey": "ms6a8Br6n28g6BJDZBdyIH",
+  "maxDimension": 2400,
+  "decks": {
+    "driveradar": {
+      "section": "154:2",
+      "slides": [
+        { "node": "94:2",  "file": "img/decks/driveradar/01-cover.png" },
+        { "node": "148:2", "file": "img/decks/driveradar/02-problem.png" },
+        { "node": "149:2", "file": "img/decks/driveradar/03-model.png" },
+        { "node": "150:2", "file": "img/decks/driveradar/04-craft.png" },
+        { "node": "151:2", "file": "img/decks/driveradar/05-tradeoff.png" },
+        { "node": "152:2", "file": "img/decks/driveradar/06-outcome.png" }
+      ]
+    }
+  }
+}

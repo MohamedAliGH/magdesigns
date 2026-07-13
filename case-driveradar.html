@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css?v=288f5b1b" />
+<link rel="stylesheet" href="css/case.css?v=288f5b1b" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -47,12 +47,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#reflection"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Cover</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">The model</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The craft</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Trade-off</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Outcome</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,59 +73,31 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="cs" id="context">
-    <header class="shead">
-      <h2>The <em>problem</em></h2>
-      <span class="mono">(04.1) — Problem</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The platform was built around the data the sensors produce, not the decision the operator has to make. Raw vibration plots — accurate, but unreadable at a glance; every measurement at the same visual weight; no hierarchy of concern.</p></div><div class="pq pad" data-r><p>Design around the <em>decision</em>, not the data — demote the spectrum so a failing gearbox surfaces.</p></div>
-  </section>
-  
-  <section class="cs" id="research">
-    <header class="shead">
-      <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(04.2) — Evidence</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>For a metric-light craft case the visuals are the proof. The redesign reorganises three levels of the product, each answering exactly one question and handing off cleanly to the next.</p></div><ol class="tiers pad" data-r>
-  <li class="tiers__row"><span class="tiers__no">01</span><b>Fleet</b><span class="tiers__q">"Where do I look?" — which assets have alerts, ranked by severity.</span></li>
-  <li class="tiers__row"><span class="tiers__no">02</span><b>Asset</b><span class="tiers__q">"What's wrong with this machine?" — health → measurements → components → service.</span></li>
-  <li class="tiers__row"><span class="tiers__no">03</span><b>Signal</b><span class="tiers__q">"Is this getting worse?" — one measurement trended against its threshold.</span></li>
-</ol>
-  </section>
-  
-  <section class="cs" id="approach">
-    <header class="shead">
-      <h2>The <em>approach</em></h2>
-      <span class="mono">(04.3) — Approach</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Asset detail reorganised around the operator’s mental model of the machine: availability up top, then key measurements as scannable states (“everything is fine” vs. a flagged value), then components with vibration status, then service info — a 3D model anchoring the operator in the physical machine.</p></div><figure class="schem pad" data-r>
-  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Severity-sorted fleet overview + asset-detail hierarchy of concern</p></div>
-  <figcaption>Before/after schematic — undifferentiated map-and-table vs. severity-sorted overview.</figcaption>
-</figure>
-  </section>
-  
-  <section class="cs" id="solution">
-    <header class="shead">
-      <h2>The <em>design</em></h2>
-      <span class="mono">(04.4) — Solution</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>From “can you read this spectrum?” to “is it trending toward the red line?” Raw vibration plots became a clean time-series with the threshold line and week/month/year ranges. The specialist’s spectral detail still exists — it moved one click deeper.</p></div>
-  </section>
-  
-  <section class="cs" id="outcome">
-    <header class="shead">
-      <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(04.5) — Outcome</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The honest framing for a craft case: rather than invent a percentage, state the designed improvement plainly — fleet triage moved from scanning an undifferentiated table to a single severity-sorted view. The number worth instrumenting next is time-to-locate a flagged asset, old versus new.</p></div>
-  </section>
-  
-  <section class="cs" id="reflection">
-    <header class="shead">
-      <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(04.6) — Reflection</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The decisions made under constraint: severity over completeness (a specialist’s raw reading is one click deeper — the right call, since triage is many users every day and deep analysis is few users occasionally), and readable trend over raw fidelity. What I’d sharpen: validate alert thresholds and colour categories with the engineers who live in alarm fatigue.</p></div>
+  <section class="deck" aria-label="Predictive maintenance, legible at a glance — deck">
+    <figure class="slide" id="slide-1" data-r>
+      <img class="slide__img" src="img/decks/driveradar/01-cover.png" alt="DriveRadar case cover — a factory's failing machinery, legible at a glance" width="1920" height="1080" loading="eager" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">01</span><span>Cover</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-2" data-r>
+      <img class="slide__img" src="img/decks/driveradar/02-problem.png" alt="The problem — all the data, almost none of the legibility; reframe: design around the decision, not the data" width="1920" height="1080" loading="eager" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">02</span><span>Problem</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-3" data-r>
+      <img class="slide__img" src="img/decks/driveradar/03-model.png" alt="Three questions in the order an engineer asks them — Fleet, Asset, Signal" width="1920" height="1080" loading="lazy" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">03</span><span>The model</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-4" data-r>
+      <img class="slide__img" src="img/decks/driveradar/04-craft.png" alt="From can you read this spectrum to is it trending toward the red line — rapid prototyping in ProtoPie" width="1920" height="1080" loading="lazy" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">04</span><span>The craft</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-5" data-r>
+      <img class="slide__img" src="img/decks/driveradar/05-tradeoff.png" alt="The trade-off — severity over completeness" width="1920" height="1080" loading="lazy" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">05</span><span>Trade-off</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-6" data-r>
+      <img class="slide__img" src="img/decks/driveradar/06-outcome.png" alt="Outcome — from an undifferentiated table to a severity-sorted view" width="1920" height="1080" loading="lazy" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">06</span><span>Outcome</span></figcaption>
+    </figure>
   </section>
 
   <!-- NEXT CASE -->
@@ -147,7 +119,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js?v=288f5b1b" defer></script>
+<script src="js/case.js?v=288f5b1b" defer></script>
 </body>
 </html>

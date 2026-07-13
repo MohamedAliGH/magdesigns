@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 *.log
+*.bak
+index-hover.html
+index-open.html

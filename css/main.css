@@ -185,6 +185,8 @@ html.flat .marq__in{animation:none}
 .about{display:grid;grid-template-columns:1.05fr .95fr;border-bottom:1px solid var(--rule)}
 .about>div{padding:2.6rem var(--gut)}
 .about__l{border-right:1px solid var(--rule)}
+.about__portrait{margin:0 0 1.8rem;max-width:300px;border:1px solid var(--rule);padding:.5rem;background:var(--bg)}
+.about__portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%}
 .about h3{font:800 1rem var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1.4rem}
 .about h3 i{font-style:normal;color:var(--blue)}
 .about p{color:var(--ink-soft);max-width:56ch}

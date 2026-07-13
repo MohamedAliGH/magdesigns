@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css?v=288f5b1b" />
+<link rel="stylesheet" href="css/case.css?v=288f5b1b" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -47,12 +47,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#reflection"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,52 +73,25 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="cs" id="context">
-    <header class="shead">
-      <h2>The <em>problem</em></h2>
-      <span class="mono">(05.1) — Problem</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Several products, several teams, one brand — and a UI that had drifted apart. The goal: consistency from a system, not from policing. A detailed write-up of the foundations, component model, and adoption is in progress; see the VIER Portal case for the systems thinking it grew from.</p></div>
-  </section>
-  
-  <section class="cs" id="research">
-    <header class="shead">
-      <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(05.2) — Evidence</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>A cross-product UI audit catalogued the drift; interviews with the designers and engineers who would adopt the system shaped its contribution model.</p></div>
-  </section>
-  
-  <section class="cs" id="approach">
-    <header class="shead">
-      <h2>The <em>approach</em></h2>
-      <span class="mono">(05.3) — Approach</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Token-first foundations, components documented with real scenarios, and a contribution path that made adoption easier than divergence.</p></div>
-  </section>
-  
-  <section class="cs" id="solution">
-    <header class="shead">
-      <h2>The <em>design</em></h2>
-      <span class="mono">(05.4) — Solution</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>One system, every product — a coherent language across the suite. Full visuals and specifics are being prepared for this page.</p></div>
-  </section>
-  
-  <section class="cs" id="outcome">
-    <header class="shead">
-      <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(05.5) — Outcome</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Faster delivery and a consistent experience across the suite; the system outlived the portal that prompted it. Specific adoption metrics will be added here once verified.</p></div>
-  </section>
-  
-  <section class="cs" id="reflection">
-    <header class="shead">
-      <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(05.6) — Reflection</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Consistency scales when it is the easy path. The system worked because contributing to it cost less than working around it.</p></div>
+  <section class="deck" aria-label="A shared product language — deck (slides in progress)">
+    <figure class="slide slide--ph" id="slide-1" data-r aria-label="Problem — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">01</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-2" data-r aria-label="Evidence — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">02</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-3" data-r aria-label="Approach — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">03</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-4" data-r aria-label="The design — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">04</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-5" data-r aria-label="Outcome — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">05</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-6" data-r aria-label="Reflection — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">06</span></div>
+    </figure>
   </section>
 
   <!-- NEXT CASE -->
@@ -140,7 +113,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js?v=288f5b1b" defer></script>
+<script src="js/case.js?v=288f5b1b" defer></script>
 </body>
 </html>

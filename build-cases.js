@@ -5,6 +5,15 @@
    floating side-nav (.toc) that scroll-spies through the case sections. */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+/* cache-busting: version query derived from the actual asset bytes, so browsers
+   refetch css/js only when they change (fixes stale-CSS across browsers/CDNs) */
+const readAsset = (p) => fs.readFileSync(path.join(__dirname, p), 'utf8');
+const assetHash = crypto.createHash('md5')
+  .update(readAsset('css/main.css') + readAsset('css/case.css') + readAsset('js/main.js') + readAsset('js/case.js'))
+  .digest('hex').slice(0, 8);
+const v = `?v=${assetHash}`;
 
 /* ---------- shared partials ---------- */
 
@@ -18,11 +27,12 @@ const SECTIONS = [
   { id: 'outcome',    label: 'Outcome' },
   { id: 'reflection', label: 'Reflection' },
 ];
-const toc = `
+const tocItems = (items) => `
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
-    ${SECTIONS.map((s, i) => `<a class="toc__item" href="#${s.id}"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">${String(i + 1).padStart(2, '0')}</span><span class="toc__label">${s.label}</span></span></a>`).join('\n    ')}
+    ${items.map((s, i) => `<a class="toc__item" href="#${s.id}"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">${String(i + 1).padStart(2, '0')}</span><span class="toc__label">${s.label}</span></span></a>`).join('\n    ')}
   </nav>`;
+const toc = tocItems(SECTIONS);
 
 const head = (c) => `<!DOCTYPE html>
 <html lang="en">
@@ -34,8 +44,8 @@ const head = (c) => `<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css${v}" />
+<link rel="stylesheet" href="css/case.css${v}" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -142,6 +152,29 @@ const schematic = (title, note) => `<figure class="schem pad" data-r>
   <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">${title}</p></div>
   ${note ? `<figcaption>${note}</figcaption>` : ''}
 </figure>`;
+
+/* full-width slide-by-slide reader — real exported Figma deck slides.
+   A case with a `slides` array renders its deck instead of the editorial sections.
+   To re-sync images after editing the Figma deck: re-export the node IDs listed in
+   img/decks/slides-manifest.json (Figma MCP get_screenshot -> curl into the same paths). */
+const slidesReader = (c) => `
+  <section class="deck" aria-label="${c.title} — deck">
+    ${c.slides.map((s, i) => `<figure class="slide" id="slide-${i + 1}" data-r>
+      <img class="slide__img" src="${s.src}" alt="${s.alt}" width="1920" height="1080" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" />
+      <figcaption class="slide__cap"><span class="slide__no">${String(i + 1).padStart(2, '0')}</span><span>${s.label}</span></figcaption>
+    </figure>`).join('\n    ')}
+  </section>`;
+
+/* placeholder deck — every case renders as a vertical slide reader; cases without
+   exported Figma slides yet show numbered 16:9 placeholder frames in the same layout,
+   so real exports drop straight in later (replace with a `slides` array like DriveRadar). */
+const DECK_STEPS = ['Problem', 'Evidence', 'Approach', 'The design', 'Outcome', 'Reflection'];
+const placeholderReader = (c, steps) => `
+  <section class="deck" aria-label="${c.title} — deck (slides in progress)">
+    ${steps.map((label, i) => `<figure class="slide slide--ph" id="slide-${i + 1}" data-r aria-label="${label} — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span></div>
+    </figure>`).join('\n    ')}
+  </section>`;
 
 /* ---------- per-case content ---------- */
 const CASES = [
@@ -300,6 +333,14 @@ const CASES = [
     tags: 'DriveRadar · SEW-Eurodrive · B2B SaaS / IIoT',
     lede: "All the data, almost none of the legibility. A map and table where every asset looked equal; failing units didn’t stand out. A missed warning isn’t bad UX — it’s a stopped production line.",
     meta: [['Role', 'Product / UI Designer'], ['Client', 'SEW-Eurodrive'], ['Domain', 'B2B · IIoT'], ['Type', 'Shipped']],
+    slides: [
+      {src: 'img/decks/driveradar/01-cover.png',    label: 'Cover',     alt: 'DriveRadar case cover — a factory\'s failing machinery, legible at a glance'},
+      {src: 'img/decks/driveradar/02-problem.png',  label: 'Problem',   alt: 'The problem — all the data, almost none of the legibility; reframe: design around the decision, not the data'},
+      {src: 'img/decks/driveradar/03-model.png',    label: 'The model', alt: 'Three questions in the order an engineer asks them — Fleet, Asset, Signal'},
+      {src: 'img/decks/driveradar/04-craft.png',    label: 'The craft', alt: 'From can you read this spectrum to is it trending toward the red line — rapid prototyping in ProtoPie'},
+      {src: 'img/decks/driveradar/05-tradeoff.png', label: 'Trade-off', alt: 'The trade-off — severity over completeness'},
+      {src: 'img/decks/driveradar/06-outcome.png',  label: 'Outcome',   alt: 'Outcome — from an undifferentiated table to a severity-sorted view'},
+    ],
     sections: {
       context: {
         lede: 'The platform was built around the data the sensors produce, not the decision the operator has to make. Raw vibration plots — accurate, but unreadable at a glance; every measurement at the same visual weight; no hierarchy of concern.',
@@ -358,6 +399,14 @@ function page(c, idx) {
   const role = c.role || '';
   const tags = c.tags || c.kicker || '';
   const concept = /concept/i.test(kind);
+  const hasSlides = Array.isArray(c.slides) && c.slides.length > 0;
+  const steps = c.deckSteps || DECK_STEPS;                 // placeholder slide labels
+  /* every case is now a vertical slide deck: real exports if present, else placeholders */
+  const deckToc = [{ id: 'overview', label: 'Overview' }].concat(
+    hasSlides
+      ? c.slides.map((s, i) => ({ id: 'slide-' + (i + 1), label: s.label }))
+      : steps.map((l, i) => ({ id: 'slide-' + (i + 1), label: l }))
+  );
   const block = id => {                        // renders lede + optional reframe pull-quote + optional component html
     const s = S[id] || {};
     return `${s.lede ? lede(s.lede) : ''}`
@@ -367,7 +416,7 @@ function page(c, idx) {
   return `${head(c)}
 
 <main id="top" class="cpage">
-${toc}
+${tocItems(deckToc)}
 
   <!-- OVERVIEW / HERO -->
   <section class="chero" id="overview">
@@ -383,12 +432,7 @@ ${toc}
     </dl>
   </section>
 
-  ${section('context',    'The <em>problem</em>',                c.num + '.1', 'Problem',     block('context'))}
-  ${section('research',   'Evidence &amp; <em>discovery</em>',   c.num + '.2', 'Evidence',    block('research'))}
-  ${section('approach',   'The <em>approach</em>',               c.num + '.3', 'Approach',    block('approach'))}
-  ${section('solution',   'The <em>design</em>',                 c.num + '.4', 'Solution',    block('solution'))}
-  ${section('outcome',    "Outcome &amp; <em>what I'd measure</em>", c.num + '.5', 'Outcome', block('outcome'))}
-  ${section('reflection', 'Trade-off &amp; <em>reflection</em>', c.num + '.6', 'Reflection',  block('reflection'))}
+  ${hasSlides ? slidesReader(c) : placeholderReader(c, steps)}
 
   <!-- NEXT CASE -->
   <section class="cnext">
@@ -409,8 +453,8 @@ ${toc}
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js${v}" defer></script>
+<script src="js/case.js${v}" defer></script>
 </body>
 </html>
 `;

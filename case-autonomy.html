@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/case.css" />
+<link rel="stylesheet" href="css/main.css?v=288f5b1b" />
+<link rel="stylesheet" href="css/case.css?v=288f5b1b" />
 <script>document.documentElement.classList.add('js');
 if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
 </head>
@@ -47,12 +47,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#context"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#research"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#approach"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#solution"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#outcome"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#reflection"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,75 +73,25 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="cs" id="context">
-    <header class="shead">
-      <h2>The <em>problem</em></h2>
-      <span class="mono">(02.1) — Problem</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The product shows the money is available and processes it; weeks later — a missed payment, difficulty, regret-driven churn. Betting that long-term trust compounds into retention faster than a marginally higher withdrawal rate.</p></div><div class="pq pad" data-r><p>A <em>trust</em> problem, not a compliance problem — help users make the decision they’d thank us for later, rather than block the ones a rule flags.</p></div><div class="axis pad" data-r>
-  <div class="axis__bar"><span class="axis__zone"><span class="axis__zonelab">Target: warn, don't block</span></span></div>
-  <div class="axis__ends"><span>Complicit (don't intervene)</span><span>Paternalistic (block)</span></div>
-</div>
-  </section>
-  
-  <section class="cs" id="research">
-    <header class="shead">
-      <h2>Evidence &amp; <em>discovery</em></h2>
-      <span class="mono">(02.2) — Evidence</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>Honest about its basis: this rests on a heuristic analysis of the live withdrawal flow plus themes from churn and support signals — no user testing yet. The first recommended step is five to eight moderated reactions before any engineering. The commitments it would hold:</p></div><div class="pcards pad" data-r>
-  <div class="pcard"><h4>Context</h4><p>Intervene only at the right moment — no nagging on safe withdrawals.</p></div>
-  <div class="pcard"><h4>Foresight</h4><p>Show the concrete future cost, not an abstract warning.</p></div>
-  <div class="pcard"><h4>Choice</h4><p>Warn, don’t block. This is the line between a safety layer and a compliance pop-up.</p></div>
-</div>
-  </section>
-  
-  <section class="cs" id="approach">
-    <header class="shead">
-      <h2>The <em>approach</em></h2>
-      <span class="mono">(02.3) — Approach</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>A bottom sheet that activates only in high-risk moments, detected from recent behaviour and remaining buffer. It shows concrete future impact before commitment, offers softer alternatives, and asks for an explicit, informed acknowledgement.</p></div><div class="seq pad" data-r>
-  <div class="seq__row"><span class="seq__n">1</span><div class="seq__c"><b>User</b><p>Enters a €500 payout</p></div><div class="seq__c"><b>System</b><p>Checks frequency + buffer, assesses risk</p></div></div>
-  <div class="seq__row"><span class="seq__n">2</span><div class="seq__c"><b>User</b><p>Reads the future snapshot</p></div><div class="seq__c"><b>System</b><p>Shows +€48/mo, flags reduced flexibility</p></div></div>
-  <div class="seq__row"><span class="seq__n">3</span><div class="seq__c"><b>User</b><p>Weighs softer options</p></div><div class="seq__c"><b>System</b><p>Suggests €300, offers delay, proposes a split</p></div></div>
-  <div class="seq__row"><span class="seq__n">4</span><div class="seq__c"><b>User</b><p>Confirms an informed choice</p></div><div class="seq__c"><b>System</b><p>Requires explicit acknowledgement, then processes</p></div></div>
-</div>
-  </section>
-  
-  <section class="cs" id="solution">
-    <header class="shead">
-      <h2>The <em>design</em></h2>
-      <span class="mono">(02.4) — Solution</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The intervention, state by state: a silent pass on safe withdrawals (proving the no-nagging principle), a future-snapshot that makes the cost concrete, soft alternatives, and an explicit acknowledgement. The future-snapshot is the emotional core — the moment an abstract risk becomes a number the user feels.</p></div><figure class="schem pad" data-r>
-  <div class="schem__frame"><span class="schem__tag">Schematic</span><p class="schem__title">Four states — risk detection · future snapshot · soft alternatives · acknowledgement</p></div>
-  <figcaption>Designed states; high-fidelity screens to follow. Shown as schematic, not a shipped screenshot.</figcaption>
-</figure>
-  </section>
-  
-  <section class="cs" id="outcome">
-    <header class="shead">
-      <h2>Outcome &amp; <em>what I'd measure</em></h2>
-      <span class="mono">(02.5) — Outcome</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>A proposal stands on reasoning, not borrowed data — so this is framed as projected targets and a test plan, never results. Long-term sustainable growth over short-term conversion: a user who takes €300 instead of €500, or delays a week, is a smaller transaction today and a retained, higher-lifetime-value customer tomorrow.</p></div><div class="mtree pad" data-r>
-  <p class="mtree__cap">How we’d measure it — <i>projected / hypotheses</i></p>
-  <ul class="mtree__list">
-    <li><b>Late-payment rate</b><span>primary — Guard cohort vs. holdout</span></li>
-    <li><b>Trust / NPS delta</b><span>secondary</span></li>
-    <li><b>Churn after payout peaks</b><span>secondary</span></li>
-    <li><b>Payout-frequency stability</b><span>guardrail</span></li>
-  </ul>
-</div>
-  </section>
-  
-  <section class="cs" id="reflection">
-    <header class="shead">
-      <h2>Trade-off &amp; <em>reflection</em></h2>
-      <span class="mono">(02.6) — Reflection</span>
-    </header>
-    <div class="cs__lede pad" data-r><p>The risk I’d flag to stakeholders: the risk-detection threshold is currently a designer’s assumption, not a tested rule — get it wrong and we nag safe users or miss risky ones. I’d want Risk and Data to co-own that threshold with me before launch. Naming that openly is what makes this judgement, not a sales pitch.</p></div>
+  <section class="deck" aria-label="Smart Repayment Guard — deck (slides in progress)">
+    <figure class="slide slide--ph" id="slide-1" data-r aria-label="Problem — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">01</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-2" data-r aria-label="Evidence — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">02</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-3" data-r aria-label="Approach — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">03</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-4" data-r aria-label="The design — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">04</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-5" data-r aria-label="Outcome — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">05</span></div>
+    </figure>
+    <figure class="slide slide--ph" id="slide-6" data-r aria-label="Reflection — slide pending">
+      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">06</span></div>
+    </figure>
   </section>
 
   <!-- NEXT CASE -->
@@ -163,7 +113,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 </main>
 </div>
 
-<script src="js/main.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/main.js?v=288f5b1b" defer></script>
+<script src="js/case.js?v=288f5b1b" defer></script>
 </body>
 </html>

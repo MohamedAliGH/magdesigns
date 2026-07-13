@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Design spec: `docs/specs/2026-07-13-easycredit-deploy-design.md` (approved).
-- Repo name: `magdesigns`. GitHub user: `mohamedalighouila`. Live URL: `https://mohamedalighouila.github.io/magdesigns/`.
+- Repo name: `magdesigns`. GitHub user: `MohamedAliGH`. Live URL: `https://MohamedAliGH.github.io/magdesigns/`.
 - Repo visibility: **public** (free GitHub Pages requires it — no GitHub Pro).
 - Branch-per-case-study: `main` always mirrors the live site; each case ships from its own `case/<name>` branch merged to `main`.
 - **Never use `git reset --hard`, `git worktree`, or any destructive git op in this plan or in any subagent executing it.** Edits + regular commits only.
@@ -125,7 +125,7 @@ Expected: shows the `chore: sync go-live working tree before deploy setup` commi
 - [ ] **Step 2: Add the remote**
 
 ```bash
-git remote add origin https://github.com/mohamedalighouila/magdesigns.git
+git remote add origin https://github.com/MohamedAliGH/magdesigns.git
 ```
 
 - [ ] **Step 3: Push `main`**
@@ -141,7 +141,7 @@ Expected: push succeeds, output includes `branch 'main' set up to track 'origin/
 
 Run (retry with a short wait if it 404s — first Pages build can take a minute or two):
 ```bash
-sleep 60 && curl -s -o /dev/null -w "%{http_code}\n" https://mohamedalighouila.github.io/magdesigns/
+sleep 60 && curl -s -o /dev/null -w "%{http_code}\n" https://MohamedAliGH.github.io/magdesigns/
 ```
 Expected: `200`
 
@@ -342,10 +342,10 @@ git push origin v1.0-easycredit
 - [ ] **Step 3: Verify the live site**
 
 ```bash
-sleep 60 && curl -s https://mohamedalighouila.github.io/magdesigns/case-funnel.html | grep -c "img/decks/easycredit/"
+sleep 60 && curl -s https://MohamedAliGH.github.io/magdesigns/case-funnel.html | grep -c "img/decks/easycredit/"
 ```
 Expected: `8`
 
 - [ ] **Step 4: Manual final check (owner)**
 
-Open `https://mohamedalighouila.github.io/magdesigns/case-funnel.html` and `https://mohamedalighouila.github.io/magdesigns/` in a browser. Confirm: the funnel case shows the real 8-slide deck; the homepage's easyCredit card links to it correctly; no other case page regressed.
+Open `https://MohamedAliGH.github.io/magdesigns/case-funnel.html` and `https://MohamedAliGH.github.io/magdesigns/` in a browser. Confirm: the funnel case shows the real 8-slide deck; the homepage's easyCredit card links to it correctly; no other case page regressed.

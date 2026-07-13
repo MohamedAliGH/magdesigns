@@ -156,11 +156,25 @@ const schematic = (title, note) => `<figure class="schem pad" data-r>
 /* full-width slide-by-slide reader — real exported Figma deck slides.
    A case with a `slides` array renders its deck instead of the editorial sections.
    To re-sync images after editing the Figma deck: re-export the node IDs listed in
-   img/decks/slides-manifest.json (Figma MCP get_screenshot -> curl into the same paths). */
+   img/decks/slides-manifest.json (Figma MCP get_screenshot -> curl into the same paths).
+
+   Optional `deviceVideo` on a slide overlays a looping screen-recording on top of the
+   static slide image, positioned to exactly cover a device mockup baked into that image.
+   Figma's server-side renderer drops the device frame's rounded mask when a video-fill
+   node is composited inside a larger scene (isolating the node renders it correctly) —
+   so the mockup's video is exported separately, in isolation, and placed back on top via
+   CSS at the mockup's known position/size within the 1920x1080 slide. `left/top/width/
+   height` are % of the slide image's box; `radius` is the device's corner radius
+   expressed as `h% / v%` (Figma's px radius divided by the device's own width/height). */
 const slidesReader = (c) => `
   <section class="deck" aria-label="${c.title} — deck">
     ${c.slides.map((s, i) => `<figure class="slide" id="slide-${i + 1}" data-r>
-      <img class="slide__img" src="${s.src}" alt="${s.alt}" width="1920" height="1080" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" />
+      <div class="slide__media">
+        <img class="slide__img" src="${s.src}" alt="${s.alt}" width="1920" height="1080" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" />
+        ${s.deviceVideo ? `<div class="slide__device" style="left:${s.deviceVideo.left};top:${s.deviceVideo.top};width:${s.deviceVideo.width};height:${s.deviceVideo.height};border-radius:${s.deviceVideo.radius}">
+          <video src="${s.deviceVideo.src}" poster="${s.deviceVideo.poster}" autoplay muted loop playsinline></video>
+        </div>` : ''}
+      </div>
       <figcaption class="slide__cap"><span class="slide__no">${String(i + 1).padStart(2, '0')}</span><span>${s.label}</span></figcaption>
     </figure>`).join('\n    ')}
   </section>`;
@@ -188,7 +202,19 @@ const CASES = [
     role: 'Senior Product Designer — owned the audit, exploration, n=6 usability test, and shipped design.',
     tags: 'easyCredit · Fintech · Web app',
     lede: 'A carousel was hiding the journey users had already committed to. The fix was not a restyle — it was making the full path honest and visible, without adding or removing a single required step.',
-    meta: [['Role', 'Sr. Product Designer'], ['Client', 'easyCredit'], ['Domain', 'Fintech · CRO'], ['Type', 'Shipped']],
+    meta: [['Role', 'Product Designer'], ['Client', 'easyCredit'], ['Domain', 'Fintech · CRO'], ['Type', 'Shipped']],
+    slides: [
+      {src: 'img/decks/easycredit/01-cover.png',    label: 'Cover',            alt: 'easyCredit case cover — reducing abandonment in a high-stakes credit funnel, without increasing perceived effort',
+        deviceVideo: {src: 'img/decks/easycredit/01-cover-device.mp4', poster: 'img/decks/easycredit/01-cover-device-poster.png',
+          left: '72.9167%', top: '11.2963%', width: '21.0417%', height: '77.4074%', radius: '11.39% / 5.5%'}},
+      {src: 'img/decks/easycredit/02-problem.png',  label: 'The problem',      alt: 'The problem — a carousel at the front door hid the journey users had committed to; two walls users weren\'t warned of, income/pay-slip upload at Step 1 and IDnow verification at Step 4'},
+      {src: 'img/decks/easycredit/03-reframe.png',  label: 'The reframe',      alt: 'The reframe — not a styling problem, a pacing problem: remove the friction that can be removed, disclose the friction that can\'t progressively'},
+      {src: 'img/decks/easycredit/04-evidence.png', label: 'Evidence',         alt: 'Evidence — two friction points from the carousel entry point, tracked at the pay-slip upload step and the IDnow legitimation hand-off'},
+      {src: 'img/decks/easycredit/05-options.png',  label: 'Options explored', alt: 'Three directions explored — enhanced carousel and full-screen stepper discarded, vertical disclosure cards shipped'},
+      {src: 'img/decks/easycredit/06-solution.png', label: 'The solution',     alt: 'The solution — vertical disclosure cards on an existing design-system component, reusing the IBAN income pull to remove Step 1 friction'},
+      {src: 'img/decks/easycredit/07-tradeoff.png', label: 'The trade-off',    alt: 'The trade-off — real friction removed by reuse at Step 1, inherent KYC friction at Step 4 paced through progressive disclosure instead of shown up front'},
+      {src: 'img/decks/easycredit/08-outcome.png',  label: 'Outcome',          alt: 'Outcome — the disclosure-card flow shipped with no before/after conversion figure yet; the stage-completion experiment proposed next'},
+    ],
     sections: {
       context: {
         lede: 'Steps lived behind a horizontal swipe; discoverability relied on a gesture many users never made. People committed, then discovered more steps late — and that surprise broke momentum at the worst point in a high-anxiety flow.',

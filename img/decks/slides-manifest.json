@@ -13,6 +13,19 @@
         { "node": "151:2", "file": "img/decks/driveradar/05-tradeoff.png" },
         { "node": "152:2", "file": "img/decks/driveradar/06-outcome.png" }
       ]
+    },
+    "easycredit": {
+      "section": "992:2",
+      "slides": [
+        { "node": "992:3",   "file": "img/decks/easycredit/01-cover.png" },
+        { "node": "992:17",  "file": "img/decks/easycredit/02-problem.png" },
+        { "node": "992:58",  "file": "img/decks/easycredit/03-reframe.png" },
+        { "node": "992:65",  "file": "img/decks/easycredit/04-evidence.png" },
+        { "node": "992:122", "file": "img/decks/easycredit/05-options.png" },
+        { "node": "992:148", "file": "img/decks/easycredit/06-solution.png" },
+        { "node": "992:183", "file": "img/decks/easycredit/07-tradeoff.png" },
+        { "node": "992:198", "file": "img/decks/easycredit/08-outcome.png" }
+      ]
     }
   }
 }

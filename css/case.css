@@ -30,6 +30,12 @@
 }
 .slide__no{font-weight:700;color:var(--blue)}
 @media (max-width:640px){.slide__img{border-radius:8px}}
+/* overlays a looping device screen-recording on top of a slide image, at the exact
+   position/size of a device mockup baked into that image — see slidesReader() comment
+   in build-cases.js for why this exists instead of a single flat export. */
+.slide__media{position:relative}
+.slide__device{position:absolute;overflow:hidden;background:#0b0b0d}
+.slide__device video{display:block;width:100%;height:100%;object-fit:cover}
 
 /* ============================================================
    FLOATING SIDE NAV — Notion-style "On this page"

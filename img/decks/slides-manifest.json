@@ -26,6 +26,20 @@
         { "node": "992:183", "file": "img/decks/easycredit/07-tradeoff.png" },
         { "node": "992:198", "file": "img/decks/easycredit/08-outcome.png" }
       ]
+    },
+    "repayment-guard": {
+      "section": "71:28",
+      "slides": [
+        { "node": "64:2",  "file": "img/decks/repayment-guard/01-cover.png" },
+        { "node": "66:2",  "file": "img/decks/repayment-guard/02-problem.png" },
+        { "node": "67:2",  "file": "img/decks/repayment-guard/03-reframe.png" },
+        { "node": "67:15", "file": "img/decks/repayment-guard/04-principles.png" },
+        { "node": "67:31", "file": "img/decks/repayment-guard/05-solution.png" },
+        { "node": "68:2",  "file": "img/decks/repayment-guard/06-intervention.png" },
+        { "node": "66:8",  "file": "img/decks/repayment-guard/07-tradeoff.png" },
+        { "node": "71:2",  "file": "img/decks/repayment-guard/08-measure.png" },
+        { "node": "71:22", "file": "img/decks/repayment-guard/09-watch.png" }
+      ]
     }
   }
 }

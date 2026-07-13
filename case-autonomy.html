@@ -47,12 +47,15 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="toc" aria-label="On this page">
     <span class="toc__cap">On this page</span>
     <a class="toc__item" href="#overview"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">01</span><span class="toc__label">Overview</span></span></a>
-    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Problem</span></span></a>
-    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">Evidence</span></span></a>
-    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">Approach</span></span></a>
-    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">The design</span></span></a>
-    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Outcome</span></span></a>
-    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">Reflection</span></span></a>
+    <a class="toc__item" href="#slide-1"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">02</span><span class="toc__label">Cover</span></span></a>
+    <a class="toc__item" href="#slide-2"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">03</span><span class="toc__label">The problem</span></span></a>
+    <a class="toc__item" href="#slide-3"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">04</span><span class="toc__label">The reframe</span></span></a>
+    <a class="toc__item" href="#slide-4"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">05</span><span class="toc__label">Principles</span></span></a>
+    <a class="toc__item" href="#slide-5"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">06</span><span class="toc__label">Solution overview</span></span></a>
+    <a class="toc__item" href="#slide-6"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">07</span><span class="toc__label">The intervention</span></span></a>
+    <a class="toc__item" href="#slide-7"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">08</span><span class="toc__label">The trade-off</span></span></a>
+    <a class="toc__item" href="#slide-8"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">09</span><span class="toc__label">How we would measure</span></span></a>
+    <a class="toc__item" href="#slide-9"><span class="toc__dash" aria-hidden="true"></span><span class="toc__text"><span class="toc__no">10</span><span class="toc__label">What I would watch</span></span></a>
   </nav>
 
   <!-- OVERVIEW / HERO -->
@@ -73,24 +76,69 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   </section>
 
   
-  <section class="deck" aria-label="Smart Repayment Guard — deck (slides in progress)">
-    <figure class="slide slide--ph" id="slide-1" data-r aria-label="Problem — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">01</span></div>
+  <section class="deck" aria-label="Smart Repayment Guard — deck">
+    <figure class="slide" id="slide-1" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/01-cover.png" alt="Cover — Smart Repayment Guard, concept / proposal, not shipped; a context-aware safety layer that surfaces the future cost of a withdrawal without blocking the user" width="1920" height="1080" loading="eager" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">01</span><span>Cover</span></figcaption>
     </figure>
-    <figure class="slide slide--ph" id="slide-2" data-r aria-label="Evidence — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">02</span></div>
+    <figure class="slide" id="slide-2" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/02-problem.png" alt="The problem — good at “how much can I take?”, silent on “should I?”; the dangerous moment is the repeat withdrawal under stress, not the credit application" width="1920" height="1080" loading="eager" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">02</span><span>The problem</span></figcaption>
     </figure>
-    <figure class="slide slide--ph" id="slide-3" data-r aria-label="Approach — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">03</span></div>
+    <figure class="slide" id="slide-3" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/03-reframe.png" alt="The reframe — a trust problem, not a compliance problem, positioned between paternalistic blocking and complicit non-intervention, aiming to warn without blocking" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">03</span><span>The reframe</span></figcaption>
     </figure>
-    <figure class="slide slide--ph" id="slide-4" data-r aria-label="The design — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">04</span></div>
+    <figure class="slide" id="slide-4" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/04-principles.png" alt="Principles — based on heuristic analysis of the withdrawal flow plus churn/support signals, with three commitments: context, foresight, and choice" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">04</span><span>Principles</span></figcaption>
     </figure>
-    <figure class="slide slide--ph" id="slide-5" data-r aria-label="Outcome — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">05</span></div>
+    <figure class="slide" id="slide-5" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/05-solution.png" alt="Solution overview — a four-stage flow: risk detection, future snapshot, soft alternatives, and acknowledgement, with the user and system action at each stage" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">05</span><span>Solution overview</span></figcaption>
     </figure>
-    <figure class="slide slide--ph" id="slide-6" data-r aria-label="Reflection — slide pending">
-      <div class="slide__frame"><span class="slide__phnum" aria-hidden="true">06</span></div>
+    <figure class="slide" id="slide-6" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/06-intervention.png" alt="The intervention — a future-snapshot overlay on a real easyCredit Plus payout screen shows the rate rising from 157€ to 283€ (+126€) after the payout, with softer alternatives offered" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">06</span><span>The intervention</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-7" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/07-tradeoff.png" alt="The trade-off — long-term growth over short-term conversion; a smaller withdrawal today favors a retained, higher-value customer tomorrow" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">07</span><span>The trade-off</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-8" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/08-measure.png" alt="How we would measure — projected targets and a test plan, not results, tracking late-payment rate, trust/NPS delta, churn after payout peaks, and payout-frequency stability" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">08</span><span>How we would measure</span></figcaption>
+    </figure>
+    <figure class="slide" id="slide-9" data-r>
+      <div class="slide__media">
+        <img class="slide__img" src="img/decks/repayment-guard/09-watch.png" alt="What I would watch — the risk threshold is a designer's assumption, not a tested rule, so Risk and Data would co-own it before launch" width="1920" height="1080" loading="lazy" decoding="async" />
+        
+      </div>
+      <figcaption class="slide__cap"><span class="slide__no">09</span><span>What I would watch</span></figcaption>
     </figure>
   </section>
 

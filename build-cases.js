@@ -263,6 +263,17 @@ const CASES = [
     tags: 'eC+ · Fintech · Concept proposal',
     lede: "The product is good at “how much can I take?” and silent on “should I?”. The dangerous moment isn’t applying for credit — it’s the repeat withdrawal under stress. This proposes a context-aware safety layer that surfaces the future cost of a withdrawal without blocking the user.",
     meta: [['Role', 'Sr. Product Designer'], ['Client', 'eC+'], ['Domain', 'Fintech'], ['Type', 'Concept / proposal']],
+    slides: [
+      {src: 'img/decks/repayment-guard/01-cover.png',       label: 'Cover',               alt: 'Cover — Smart Repayment Guard, concept / proposal, not shipped; a context-aware safety layer that surfaces the future cost of a withdrawal without blocking the user'},
+      {src: 'img/decks/repayment-guard/02-problem.png',     label: 'The problem',         alt: 'The problem — good at “how much can I take?”, silent on “should I?”; the dangerous moment is the repeat withdrawal under stress, not the credit application'},
+      {src: 'img/decks/repayment-guard/03-reframe.png',     label: 'The reframe',         alt: 'The reframe — a trust problem, not a compliance problem, positioned between paternalistic blocking and complicit non-intervention, aiming to warn without blocking'},
+      {src: 'img/decks/repayment-guard/04-principles.png',  label: 'Principles',          alt: 'Principles — based on heuristic analysis of the withdrawal flow plus churn/support signals, with three commitments: context, foresight, and choice'},
+      {src: 'img/decks/repayment-guard/05-solution.png',    label: 'Solution overview',   alt: 'Solution overview — a four-stage flow: risk detection, future snapshot, soft alternatives, and acknowledgement, with the user and system action at each stage'},
+      {src: 'img/decks/repayment-guard/06-intervention.png',label: 'The intervention',    alt: 'The intervention — a future-snapshot overlay on a real easyCredit Plus payout screen shows the rate rising from 157€ to 283€ (+126€) after the payout, with softer alternatives offered'},
+      {src: 'img/decks/repayment-guard/07-tradeoff.png',    label: 'The trade-off',       alt: 'The trade-off — long-term growth over short-term conversion; a smaller withdrawal today favors a retained, higher-value customer tomorrow'},
+      {src: 'img/decks/repayment-guard/08-measure.png',     label: 'How we would measure',alt: 'How we would measure — projected targets and a test plan, not results, tracking late-payment rate, trust/NPS delta, churn after payout peaks, and payout-frequency stability'},
+      {src: 'img/decks/repayment-guard/09-watch.png',       label: 'What I would watch',  alt: 'What I would watch — the risk threshold is a designer\'s assumption, not a tested rule, so Risk and Data would co-own it before launch'},
+    ],
     sections: {
       context: {
         lede: "The product shows the money is available and processes it; weeks later — a missed payment, difficulty, regret-driven churn. Betting that long-term trust compounds into retention faster than a marginally higher withdrawal rate.",

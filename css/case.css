@@ -34,8 +34,25 @@
    position/size of a device mockup baked into that image — see slidesReader() comment
    in build-cases.js for why this exists instead of a single flat export. */
 .slide__media{position:relative}
-.slide__device{position:absolute;overflow:hidden;background:#0b0b0d}
-.slide__device video{display:block;width:100%;height:100%;object-fit:cover}
+/* the rect covers the slide art's full bezel hole; white bg + object-fit:contain letterboxes the
+   recording (which is slightly narrower-aspect than the hole) invisibly — the app UI is white too.
+   No cover-crop (status bar stays visible), no seams against the baked bezel. */
+.slide__device{position:absolute;overflow:hidden;background:#fff}
+.slide__device video{display:block;width:100%;height:100%;object-fit:contain}
+/* SRG slide 06: the rate-impact sheet, then the confirm sheet, slide up over the recording once
+   the rate choice settles (deck node 68:2 sequence). Reveals are driven by main.js "sheet sync"
+   off the video's own currentTime (per-sheet data-at) — a CSS animation clock drifts against
+   the video. Later sheet sits above the earlier one (DOM order). */
+.slide__device img.device__sheet{position:absolute;left:0;bottom:0;width:100%;display:block;z-index:2;
+  transform:translateY(102%);transition:transform .9s var(--ease)}
+.slide__device img.device__sheet.up{transform:translateY(0)}
+/* static fallback (screenshots / reduced motion): only the final sheet, no stack */
+html.flat .slide__device img.device__sheet{transition:none}
+html.flat .slide__device img.device__sheet:not(:last-of-type){display:none}
+@media(prefers-reduced-motion:reduce){
+  .slide__device img.device__sheet{transition:none}
+  .slide__device img.device__sheet:not(:last-of-type){display:none}
+}
 
 /* ============================================================
    FLOATING SIDE NAV — Notion-style "On this page"

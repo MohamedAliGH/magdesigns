@@ -174,7 +174,8 @@ const slidesReader = (c) => `
       <div class="slide__media">
         <img class="slide__img" src="${s.src}" alt="${s.alt}" width="1920" height="1080" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" />
         ${(s.deviceVideos || []).map(dv => `<div class="slide__device" style="left:${dv.left};top:${dv.top};width:${dv.width};height:${dv.height};border-radius:${dv.radius}">
-          <video src="${dv.src}" poster="${dv.poster}" autoplay muted loop playsinline></video>
+          <video src="${dv.src}" poster="${dv.poster}" ${dv.once ? 'data-once muted playsinline preload="auto"' : 'autoplay muted loop playsinline'}></video>${(dv.sheets || []).map(sh => `
+          <img class="device__sheet" src="${sh.src}" data-at="${sh.at}"${sh.until ? ` data-until="${sh.until}"` : ''} alt="${sh.alt}">`).join('')}
         </div>`).join('')}
       </div>
       <figcaption class="slide__cap"><span class="slide__no">${String(i + 1).padStart(2, '0')}</span><span>${s.label}</span></figcaption>
@@ -279,7 +280,18 @@ const CASES = [
       {src: 'img/decks/repayment-guard/05-solution.png',    label: 'Solution overview',   alt: 'Solution overview — a four-stage flow: risk detection, future snapshot, soft alternatives, and acknowledgement, with the user and system action at each stage'},
       {src: 'img/decks/repayment-guard/06-intervention.png',label: 'The intervention',    alt: 'The intervention — a future-snapshot overlay on a real easyCredit Plus payout screen shows the rate rising from 157€ to 283€ (+126€) after the payout, with softer alternatives offered',
         deviceVideos: [{src: 'img/decks/repayment-guard/06-intervention-device.mp4', poster: 'img/decks/repayment-guard/06-intervention-device-poster.png',
-          left: '68.9583%', top: '15.5556%', width: '18.5938%', height: '68.8889%', radius: '8.96% / 4.30%'}]},
+          // rect = the slide art's full bezel hole (measured: 1324,168 -> 357x743 px of 1920x1080);
+          // the video letterboxes inside it on white (object-fit:contain in case.css) so nothing is
+          // cropped and the sheets span the full screen width, flush with the baked bezel
+          left: '68.9583%', top: '15.5556%', width: '18.5938%', height: '68.7963%', radius: '8.96% / 4.30%',
+          // deck-node-68:2 sequence, played ONCE per viewport entry (video freezes on its last
+          // frame at 14.858s): drag settles 10.5s -> rate-impact sheet holds ~4.8s -> confirm
+          // sheet replaces it at 15.5s and stays. Scrolling away/back restarts the sequence.
+          once: true,
+          sheets: [
+            {src: 'img/decks/repayment-guard/rate-sheet.png',    at: 10.7, until: 15.5, alt: 'Your rate after this payout — 157€ rises to 283€, +126€ for 36 months'},
+            {src: 'img/decks/repayment-guard/confirm-sheet.png', at: 15.5,              alt: 'Please confirm payout — I understand the impact on my monthly finances'},
+          ]}]},
       {src: 'img/decks/repayment-guard/07-tradeoff.png',    label: 'The trade-off',       alt: 'The trade-off — long-term growth over short-term conversion; a smaller withdrawal today favors a retained, higher-value customer tomorrow'},
       {src: 'img/decks/repayment-guard/08-measure.png',     label: 'How we would measure',alt: 'How we would measure — projected targets and a test plan, not results, tracking late-payment rate, trust/NPS delta, churn after payout peaks, and payout-frequency stability'},
       {src: 'img/decks/repayment-guard/09-watch.png',       label: 'What I would watch',  alt: 'What I would watch — the risk threshold is a designer\'s assumption, not a tested rule, so Risk and Data would co-own it before launch'},
@@ -352,13 +364,26 @@ const CASES = [
     file: 'case-platform.html',
     num: '04', kicker: 'VIER · Enterprise SaaS',
     kind: 'Shipped',
-    title: 'From five products to one operational hub',
-    gTitle: "Five products that behaved like <em>five startups</em>",
+    title: 'From six products to one operational hub',
+    gTitle: "Six products that behaved like <em>six startups</em>",
     desc: "Turning a fragmented enterprise ecosystem into one operational hub — and founding the design system that outlived the portal itself.",
-    role: 'Owned IA + portal UX; founded the design system; specced the SSO UX (engineering led SSO).',
+    role: 'Owned IA and portal UX; founded the design system; specified the SSO UX (engineering led SSO).',
     tags: 'VIER · Enterprise SaaS (B2B)',
     lede: 'Six products — routing, analytics, forecasting, monitoring, bots, ticketing — each its own island: multiple logins, manually stitched KPIs, tickets in separate environments. The obvious read was "inconsistent UI." It was infrastructure.',
     meta: [['Role', 'Sr. Product Designer'], ['Client', 'VIER'], ['Domain', 'Enterprise SaaS'], ['Type', 'Shipped']],
+    // VIER deck V3, Figma section node 1743:2 — exported 2026-07-16 as 10 slide PNGs
+    slides: [
+      {src: 'img/decks/vier/01-cover.png',         label: 'Cover',              alt: 'Six products that behaved like six startups — turning a fragmented enterprise ecosystem into one operational hub, and founding the design system that outlived the portal'},
+      {src: 'img/decks/vier/02-problem.png',       label: 'The problem',        alt: 'Fragmentation looked like UX, it was infrastructure — six products (routing, analytics, forecasting, monitoring, bots, ticketing), each its own island: multiple logins, manually stitched KPIs, tickets in separate environments; no shared authentication, IA, or component language'},
+      {src: 'img/decks/vier/03-discovery.png',     label: 'Discovery',          alt: 'Grounded in research, not assumption — 11 user interviews and 28 internal stakeholder interviews plus 5 workshops and 4 journey maps; users worked across 4.2 systems on average and lost about 45 minutes a day; the recurring request: "I just want everything in one place"; 5 personas mapped'},
+      {src: 'img/decks/vier/04-strategy.png',      label: 'Strategy',           alt: 'Unify, Simplify, Empower — three infrastructure layers, not three screens: single sign-on at the base, one IA and shared component language above it, one operational home view on top; users touch the top layer, the leverage was at the base'},
+      {src: 'img/decks/vier/05-ia.png',            label: 'Information architecture', alt: 'The real work was the IA — an app-launcher model (rejected: silos one click away) weighed against a workspace model (chosen: status, tickets, analytics on home), validated in journey maps; customer-portal sitemap as evidence'},
+      {src: 'img/decks/vier/06-tradeoff.png',      label: 'The trade-off',      alt: 'A heavier home, chosen on purpose — the workspace model costs a denser home view, more to load on first paint, and more upfront IA work; accepted for what a launcher grid could never do: status, tickets, and analytics visible without a click'},
+      {src: 'img/decks/vier/07-shipped.png',       label: 'From wireframe to shipped', alt: 'From wireframe to shipped — the validated IA shipped almost unchanged: same zones, same hierarchy, production polish; unify (one login, one product switcher), simplify (one navigation across former islands), empower (live stats and tickets on home)'},
+      {src: 'img/decks/vier/08-outcome.png',       label: 'Outcome',            alt: 'One hub, and a design system that outlived it — logins per day 6 to 1 via SSO, manually stitched KPIs to one operational home, tickets to one queue, design system founded; plus a proposed measurement plan, not instrumented at time of writing'},
+      {src: 'img/decks/vier/09-design-system.png', label: 'Design system',      alt: 'The system that outlived the portal — 40+ documented components, color and type foundations, light/dark theming, documented as a live styleguide; the portal was retired, the system remains live and maintained'},
+      {src: 'img/decks/vier/10-reflection.png',    label: 'Reflection',         alt: 'The highest-leverage decision was made above the screen — single sign-on became the most significant usability improvement because design sat in the architecture room, not because of visual design'},
+    ],
     sections: {
       context: {
         lede: 'Fragmentation looked like a UX problem. The cause was no shared authentication, no shared information architecture, no shared component language — so every fix was local and the experience kept drifting apart.',
@@ -367,7 +392,7 @@ const CASES = [
       research: {
         lede: 'Grounded in research, not assumption. The recurring line across nearly every interview: "I just want everything in one place."',
         html: statBlock([
-          {big:'18', label:'User interviews', note:'+ 5 workshops, 4 journey maps'},
+          {big:'11', label:'User interviews', note:'+ 28 stakeholder interviews, 5 workshops, 4 journey maps'},
           {big:'4.2', label:'Systems per user, on average'},
           {big:'~45min', label:'Lost per day navigating between tools'},
         ]),

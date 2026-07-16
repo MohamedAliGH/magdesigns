@@ -51,14 +51,39 @@
     cs.forEach(e=>cio.observe(e));
   }else cs.forEach(run);
 
-  // SRG card-02: rate-sheet reveal synced to the recording's own clock (drift-proof).
-  // The recording settles on the chosen rate (283€/36mo) at 10.5s of 14.858s; the sheet
-  // slides up just after and drops when the video loops back to 0.
-  $$('.device__sheet').forEach(sheet=>{
-    const vid=sheet.parentElement?.querySelector('video');
-    if(reduce||!vid){sheet.classList.add('up');return;}
-    const AT=10.7;
-    vid.addEventListener('timeupdate',()=>sheet.classList.toggle('up',vid.currentTime>=AT));
+  // SRG sheet reveals synced to the recording's own clock (drift-proof).
+  // Each sheet slides up at data-at (default 10.7s — just after the rate choice settles)
+  // and drops at data-until, so a later sheet replaces an earlier one instead of stacking.
+  // Loop mode (homepage teaser): video loops, sheets simply follow currentTime.
+  // Once mode (case slide, video[data-once]): plays once per viewport entry and freezes on
+  // its last frame; sheet times past the video end fire on timers (timeupdate stops after
+  // `ended`). Scrolling away pauses it; scrolling back restarts the whole sequence.
+  const sheetDevs=new Set($$('.device__sheet').map(s=>s.parentElement));
+  sheetDevs.forEach(dev=>{
+    const vid=dev.querySelector('video');
+    const sheets=$$('.device__sheet',dev);
+    if(reduce||!vid){sheets.forEach(s=>s.classList.add('up'));return;}
+    const t0=sh=>parseFloat(sh.dataset.at)||10.7;
+    const t1=sh=>parseFloat(sh.dataset.until)||Infinity;
+    const apply=t=>sheets.forEach(sh=>sh.classList.toggle('up',t>=t0(sh)&&t<t1(sh)));
+    vid.addEventListener('timeupdate',()=>apply(vid.currentTime));
+    if(!vid.hasAttribute('data-once'))return;
+    let timers=[];
+    const clear=()=>{timers.forEach(clearTimeout);timers=[];};
+    vid.addEventListener('ended',()=>{
+      const D=vid.duration;
+      const marks=new Set();
+      sheets.forEach(sh=>[t0(sh),t1(sh)].forEach(m=>{if(isFinite(m)&&m>=D)marks.add(m);}));
+      clear();
+      timers=[...marks].sort((a,b)=>a-b).map(m=>setTimeout(()=>apply(m),(m-D)*1000));
+    });
+    if('IntersectionObserver' in window){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{
+        if(e.isIntersecting){clear();apply(0);try{vid.currentTime=0;}catch(_){/* not loaded yet */}vid.play().catch(()=>{});}
+        else vid.pause();
+      }),{threshold:.35});
+      io.observe(dev);
+    }else vid.play().catch(()=>{});
   });
 
   // clock + year

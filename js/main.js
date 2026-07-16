@@ -51,6 +51,16 @@
     cs.forEach(e=>cio.observe(e));
   }else cs.forEach(run);
 
+  // SRG card-02: rate-sheet reveal synced to the recording's own clock (drift-proof).
+  // The recording settles on the chosen rate (283€/36mo) at 10.5s of 14.858s; the sheet
+  // slides up just after and drops when the video loops back to 0.
+  $$('.device__sheet').forEach(sheet=>{
+    const vid=sheet.parentElement?.querySelector('video');
+    if(reduce||!vid){sheet.classList.add('up');return;}
+    const AT=10.7;
+    vid.addEventListener('timeupdate',()=>sheet.classList.toggle('up',vid.currentTime>=AT));
+  });
+
   // clock + year
   const fmt=new Intl.DateTimeFormat('de-DE',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Berlin'});
   const tickC=()=>$$('[data-clock]').forEach(e=>e.textContent=fmt.format(new Date()));

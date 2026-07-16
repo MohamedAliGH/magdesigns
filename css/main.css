@@ -114,6 +114,7 @@ html.flat .hero h1 .row span{transform:none;transition:none}
 /* marquee */
 .marq{border-bottom:1px solid var(--rule);overflow:hidden;padding-block:1rem;white-space:nowrap}
 .marq__in{display:inline-block;animation:mq 28s linear infinite;will-change:transform}
+@keyframes mq{to{transform:translateX(-33.3334%)}}
 html.flat .marq__in{animation:none}
 @media(prefers-reduced-motion:reduce){.marq__in{animation:none}}
 .marq span{font:800 1.4rem var(--f-disp);font-stretch:125%;text-transform:uppercase;margin-right:3.5rem}
@@ -183,14 +184,14 @@ html.flat .marq__in{animation:none}
 
 /* ============ about ============ */
 .about{display:grid;grid-template-columns:1.05fr .95fr;border-bottom:1px solid var(--rule)}
-.about>div{padding:2.6rem var(--gut)}
+.about>div{padding:2rem var(--gut)}
 .about__l{border-right:1px solid var(--rule)}
-.about__portrait{margin:0 0 1.8rem;max-width:300px;border:1px solid var(--rule);padding:.5rem;background:var(--bg)}
-.about__portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%}
+.about__portrait{margin:0 0 1.3rem;width:240px;max-width:100%;border:1px solid var(--rule);padding:.5rem;background:var(--bg)}
+.about__portrait img{display:block;width:100%;height:288px;object-fit:cover;object-position:50% 28%}
 .about h3{font:800 1rem var(--f-disp);font-stretch:125%;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1.4rem}
 .about h3 i{font-style:normal;color:var(--blue)}
 .about p{color:var(--ink-soft);max-width:56ch}
-.about__chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.6rem}
+.about__chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
 .about__chips li{font:400 .65rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:.45rem .7rem;transition:background .3s var(--ease),color .3s var(--ease)}
 .about__chips li:hover{background:var(--ink);color:var(--bg)}
 .xp li{display:grid;grid-template-columns:1fr auto;gap:.1rem 1.5rem;padding-block:1rem;border-bottom:1px solid var(--rule-soft)}

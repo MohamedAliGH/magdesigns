@@ -55,7 +55,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 <div class="frame">
 
 <header class="top">
-  <a class="top__brand" href="index.html#top">Mag<i>design</i>®</a>
+  <a class="top__brand" href="index.html#top">Mag<i>designs</i>®</a>
   <nav class="top__nav" aria-label="Primary">
     <a href="index.html#work">Work</a><a href="index.html#numbers">Numbers</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
   </nav>
@@ -158,22 +158,24 @@ const schematic = (title, note) => `<figure class="schem pad" data-r>
    To re-sync images after editing the Figma deck: re-export the node IDs listed in
    img/decks/slides-manifest.json (Figma MCP get_screenshot -> curl into the same paths).
 
-   Optional `deviceVideo` on a slide overlays a looping screen-recording on top of the
-   static slide image, positioned to exactly cover a device mockup baked into that image.
-   Figma's server-side renderer drops the device frame's rounded mask when a video-fill
-   node is composited inside a larger scene (isolating the node renders it correctly) —
-   so the mockup's video is exported separately, in isolation, and placed back on top via
-   CSS at the mockup's known position/size within the 1920x1080 slide. `left/top/width/
+   Optional `deviceVideos` on a slide overlays one or more looping screen-recordings on
+   top of the static slide image, each positioned to exactly cover a device mockup baked
+   into that image. These are the ORIGINAL screen-recording source files (dropped in
+   locally, transcoded HEVC->H.264 via `avconvert -p PresetHighestQuality` and fast-start
+   remuxed) — not Figma's own video/motion export, which only ever produced a frozen
+   first-frame + low-res proxy for pasted video content (a real platform limitation, not
+   a bug in our export code — confirmed across two independent slides). `left/top/width/
    height` are % of the slide image's box; `radius` is the device's corner radius
-   expressed as `h% / v%` (Figma's px radius divided by the device's own width/height). */
+   expressed as `h% / v%` (Figma's px radius divided by the device's own width/height) —
+   both computed from get_metadata's absolute node geometry, not eyeballed. */
 const slidesReader = (c) => `
   <section class="deck" aria-label="${c.title} — deck">
     ${c.slides.map((s, i) => `<figure class="slide" id="slide-${i + 1}" data-r>
       <div class="slide__media">
         <img class="slide__img" src="${s.src}" alt="${s.alt}" width="1920" height="1080" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async" />
-        ${s.deviceVideo ? `<div class="slide__device" style="left:${s.deviceVideo.left};top:${s.deviceVideo.top};width:${s.deviceVideo.width};height:${s.deviceVideo.height};border-radius:${s.deviceVideo.radius}">
-          <video src="${s.deviceVideo.src}" poster="${s.deviceVideo.poster}" autoplay muted loop playsinline></video>
-        </div>` : ''}
+        ${(s.deviceVideos || []).map(dv => `<div class="slide__device" style="left:${dv.left};top:${dv.top};width:${dv.width};height:${dv.height};border-radius:${dv.radius}">
+          <video src="${dv.src}" poster="${dv.poster}" autoplay muted loop playsinline></video>
+        </div>`).join('')}
       </div>
       <figcaption class="slide__cap"><span class="slide__no">${String(i + 1).padStart(2, '0')}</span><span>${s.label}</span></figcaption>
     </figure>`).join('\n    ')}
@@ -205,9 +207,15 @@ const CASES = [
     meta: [['Role', 'Product Designer'], ['Client', 'easyCredit'], ['Domain', 'Fintech · CRO'], ['Type', 'Shipped']],
     slides: [
       {src: 'img/decks/easycredit/01-cover.png',    label: 'Cover',            alt: 'easyCredit case cover — reducing abandonment in a high-stakes credit funnel, without increasing perceived effort',
-        deviceVideo: {src: 'img/decks/easycredit/01-cover-device.mp4', poster: 'img/decks/easycredit/01-cover-device-poster.png',
-          left: '72.9167%', top: '11.2963%', width: '21.0417%', height: '77.4074%', radius: '11.39% / 5.5%'}},
-      {src: 'img/decks/easycredit/02-problem.png',  label: 'The problem',      alt: 'The problem — a carousel at the front door hid the journey users had committed to; two walls users weren\'t warned of, income/pay-slip upload at Step 1 and IDnow verification at Step 4'},
+        deviceVideos: [{src: 'img/decks/easycredit/01-cover-device.mp4', poster: 'img/decks/easycredit/01-cover-device-poster.png',
+          left: '72.9167%', top: '11.2963%', width: '21.0417%', height: '77.4074%', radius: '11.39% / 5.5%'}]},
+      {src: 'img/decks/easycredit/02-problem.png',  label: 'The problem',      alt: 'The problem — a carousel at the front door hid the journey users had committed to; two walls users weren\'t warned of, income/pay-slip upload at Step 1 and IDnow verification at Step 4',
+        deviceVideos: [
+          {src: 'img/decks/easycredit/02-problem-phone1.mp4', poster: 'img/decks/easycredit/02-problem-phone1-poster.png',
+            left: '17.3958%', top: '51.9074%', width: '11.0938%', height: '42.5926%', radius: '11.27% / 5.22%'},
+          {src: 'img/decks/easycredit/02-problem-phone2.mp4', poster: 'img/decks/easycredit/02-problem-phone2-poster.png',
+            left: '45.3646%', top: '51.8519%', width: '11.0938%', height: '42.6852%', radius: '11.27% / 5.21%'},
+        ]},
       {src: 'img/decks/easycredit/03-reframe.png',  label: 'The reframe',      alt: 'The reframe — not a styling problem, a pacing problem: remove the friction that can be removed, disclose the friction that can\'t progressively'},
       {src: 'img/decks/easycredit/04-evidence.png', label: 'Evidence',         alt: 'Evidence — two friction points from the carousel entry point, tracked at the pay-slip upload step and the IDnow legitimation hand-off'},
       {src: 'img/decks/easycredit/05-options.png',  label: 'Options explored', alt: 'Three directions explored — enhanced carousel and full-screen stepper discarded, vertical disclosure cards shipped'},
@@ -269,7 +277,9 @@ const CASES = [
       {src: 'img/decks/repayment-guard/03-reframe.png',     label: 'The reframe',         alt: 'The reframe — a trust problem, not a compliance problem, positioned between paternalistic blocking and complicit non-intervention, aiming to warn without blocking'},
       {src: 'img/decks/repayment-guard/04-principles.png',  label: 'Principles',          alt: 'Principles — based on heuristic analysis of the withdrawal flow plus churn/support signals, with three commitments: context, foresight, and choice'},
       {src: 'img/decks/repayment-guard/05-solution.png',    label: 'Solution overview',   alt: 'Solution overview — a four-stage flow: risk detection, future snapshot, soft alternatives, and acknowledgement, with the user and system action at each stage'},
-      {src: 'img/decks/repayment-guard/06-intervention.png',label: 'The intervention',    alt: 'The intervention — a future-snapshot overlay on a real easyCredit Plus payout screen shows the rate rising from 157€ to 283€ (+126€) after the payout, with softer alternatives offered'},
+      {src: 'img/decks/repayment-guard/06-intervention.png',label: 'The intervention',    alt: 'The intervention — a future-snapshot overlay on a real easyCredit Plus payout screen shows the rate rising from 157€ to 283€ (+126€) after the payout, with softer alternatives offered',
+        deviceVideos: [{src: 'img/decks/repayment-guard/06-intervention-device.mp4', poster: 'img/decks/repayment-guard/06-intervention-device-poster.png',
+          left: '68.9583%', top: '15.5556%', width: '18.5938%', height: '68.8889%', radius: '8.96% / 4.30%'}]},
       {src: 'img/decks/repayment-guard/07-tradeoff.png',    label: 'The trade-off',       alt: 'The trade-off — long-term growth over short-term conversion; a smaller withdrawal today favors a retained, higher-value customer tomorrow'},
       {src: 'img/decks/repayment-guard/08-measure.png',     label: 'How we would measure',alt: 'How we would measure — projected targets and a test plan, not results, tracking late-payment rate, trust/NPS delta, churn after payout peaks, and payout-frequency stability'},
       {src: 'img/decks/repayment-guard/09-watch.png',       label: 'What I would watch',  alt: 'What I would watch — the risk threshold is a designer\'s assumption, not a tested rule, so Risk and Data would co-own it before launch'},
@@ -316,8 +326,31 @@ const CASES = [
     },
   },
   {
+    file: 'case-job-kompass.html',
+    num: '03', kicker: 'Job-Kompass · Career tech',
+    kind: 'Prototype — in build',
+    title: 'A calmer way through the job hunt',
+    gTitle: 'A calmer way through the <em>job hunt</em>',
+    desc: 'Job-Kompass: an AI-native companion for anxious job seekers in the German market — built solo from discovery to running code, honest about what its AI can’t know.',
+    role: 'Solo — research, product, design, and build, end to end.',
+    tags: 'Job-Kompass · Career tech · AI-native product',
+    lede: 'Ten of ten surveyed job seekers were tracking applications with no dedicated tool, and zero of ten would trust a bare match score. The response replaces the score with a reasoned, plain-language read, and treats applying, watching, deciding later, and declining as four equally valid outcomes.',
+    meta: [['Role', 'Product Designer'], ['Client', 'Self-directed'], ['Domain', 'Career tech'], ['Type', 'Prototype — in build']],
+    slides: [
+      {src: 'img/decks/job-kompass/01-cover.png',         label: 'Cover',                      alt: 'Job-Kompass case cover — a calmer way through the job hunt; prototype in build, solo research, product, design, and build'},
+      {src: 'img/decks/job-kompass/02-problem.png',       label: 'The problem, from research', alt: 'The problem, from research — 10 of 10 surveyed job seekers track applications with no dedicated tool, 0 of 10 would trust a bare match score, and two interviews surfaced two different jobs to be done; the paralysis sits between finding a job and deciding whether to apply'},
+      {src: 'img/decks/job-kompass/03-thesis.png',        label: 'The thesis',                 alt: 'The thesis — warmth lives in copy and pacing, not in a character; the product never pressures, treats all four decision outcomes as equally valid, and works one session at a time'},
+      {src: 'img/decks/job-kompass/04-directions.png',    label: 'Discovery → directions',     alt: 'Discovery to directions — three live prototypes tested three ideas; the score-free reasoning read and the one-workspace direction carried forward, the guided cover-letter session is not yet built'},
+      {src: 'img/decks/job-kompass/05-core-loop.png',     label: 'The core loop',              alt: 'The core loop — capture a job posting, read a section-by-section reasoned fit assessment with no score, and record a decision; the full loop now runs end to end'},
+      {src: 'img/decks/job-kompass/06-ai-trust.png',      label: 'Trust mechanics',            alt: 'Designing for an AI you can’t fully trust — a plain-language read instead of a score, a permanent non-dismissible AI-generated disclosure, and failure states specced as next, not yet built'},
+      {src: 'img/decks/job-kompass/07-built-honest.png',  label: 'Built to stay honest',       alt: 'Built to stay honest — design principles enforced as CI checks with tests written to fail first, every change following the same plan, spec, build, and critical-review process'},
+      {src: 'img/decks/job-kompass/08-first-contact.png', label: 'First contact with users',   alt: 'First contact with users — two guided sessions scored against pass/fail bars set in advance; what held, a score-versus-reasoning A/B split down the middle, and a miss recorded honestly'},
+      {src: 'img/decks/job-kompass/09-status.png',        label: 'Status & next',              alt: 'Status and what happens next — the core loop runs end to end today, a content-complete MVP targeted for 2026-07-25, zero outcome metrics claimed by principle, and what is still to be tested'},
+    ],
+  },
+  {
     file: 'case-platform.html',
-    num: '03', kicker: 'VIER · Enterprise SaaS',
+    num: '04', kicker: 'VIER · Enterprise SaaS',
     kind: 'Shipped',
     title: 'From five products to one operational hub',
     gTitle: "Five products that behaved like <em>five startups</em>",
@@ -361,7 +394,7 @@ const CASES = [
   },
   {
     file: 'case-driveradar.html',
-    num: '04', kicker: 'DriveRadar · SEW-Eurodrive',
+    num: '05', kicker: 'DriveRadar · SEW-Eurodrive',
     kind: 'Shipped',
     title: 'Predictive maintenance, legible at a glance',
     gTitle: "A factory’s failing machinery, <em>legible at a glance</em>",
@@ -404,26 +437,6 @@ const CASES = [
       reflection: {
         lede: "The decisions made under constraint: severity over completeness (a specialist’s raw reading is one click deeper — the right call, since triage is many users every day and deep analysis is few users occasionally), and readable trend over raw fidelity. What I’d sharpen: validate alert thresholds and colour categories with the engineers who live in alarm fatigue.",
       },
-    },
-  },
-  {
-    file: 'case-design-system.html',
-    num: '05', kicker: 'VIER · Design system',
-    kind: 'In progress',
-    title: 'A shared product language',
-    gTitle: 'A shared product <em>language</em>',
-    desc: 'The VIER design system — token-first foundations, documented components, and a contribution model. Full case study in progress.',
-    role: 'Founded and scaled the design system across the VIER product suite.',
-    tags: 'VIER · Design system',
-    lede: 'The component language founded during the VIER portal work grew into a design system that outlived the portal itself — token-first foundations, components documented with real product scenarios, and a contribution model engineers actually use. The full case study is being written up.',
-    meta: [['Role', 'Sr. Product Designer'], ['Client', 'VIER'], ['Domain', 'Design systems'], ['Type', 'In progress']],
-    sections: {
-      context: { lede: 'Several products, several teams, one brand — and a UI that had drifted apart. The goal: consistency from a system, not from policing. A detailed write-up of the foundations, component model, and adoption is in progress; see the VIER Portal case for the systems thinking it grew from.' },
-      research: { lede: 'A cross-product UI audit catalogued the drift; interviews with the designers and engineers who would adopt the system shaped its contribution model.' },
-      approach: { lede: 'Token-first foundations, components documented with real scenarios, and a contribution path that made adoption easier than divergence.' },
-      solution: { lede: 'One system, every product — a coherent language across the suite. Full visuals and specifics are being prepared for this page.' },
-      outcome: { lede: 'Faster delivery and a consistent experience across the suite; the system outlived the portal that prompted it. Specific adoption metrics will be added here once verified.' },
-      reflection: { lede: 'Consistency scales when it is the easy path. The system worked because contributing to it cost less than working around it.' },
     },
   },
 ];
@@ -483,7 +496,7 @@ ${tocItems(deckToc)}
   </section>
 
   <footer class="cfoot">
-    <p>© <span data-year>2026</span> Mohamed Ali Ghouila — Magdesign®</p>
+    <p>© <span data-year>2026</span> Mohamed Ali Ghouila — Magdesigns®</p>
     <p>Designed to be essential. Nothing more.</p>
     <a href="#top">Back to top ↑</a>
   </footer>

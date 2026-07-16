@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/preview.css" />
 <script>document.documentElement.classList.add('js');
-if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');</script>
+if(new URLSearchParams(location.search).has('flat'))document.documentElement.classList.add('flat');
+if(new URLSearchParams(location.search).has('shot'))document.documentElement.classList.add('shot');</script>
 </head>
 <body>
 <a class="skip" href="#work">Skip to content</a>
@@ -19,7 +20,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
 <div class="frame">
 
 <header class="top">
-  <a class="top__brand" href="#top">Mag<i>design</i>®</a>
+  <a class="top__brand" href="#top">Mag<i>designs</i>®</a>
   <nav class="top__nav" aria-label="Primary">
     <a href="#work">Work</a><a href="#numbers">Numbers</a><a href="#about">About</a><a href="#contact">Contact</a>
   </nav>
@@ -95,8 +96,9 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       </div>
       <figure class="tcard__media">
         <div class="device device--phone">
-          <span class="device__notch" aria-hidden="true"></span>
-          <div class="device__screen"><img src="img/cases/easycredit.jpg" alt="" loading="lazy"></div>
+          <div class="device__screen">
+            <video src="img/decks/easycredit/01-cover-device.mp4" poster="img/decks/easycredit/01-cover-device-poster.png" autoplay muted loop playsinline></video>
+          </div>
         </div>
       </figure>
     </article>
@@ -118,14 +120,36 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       </div>
       <figure class="tcard__media">
         <div class="device device--phone">
-          <span class="device__notch" aria-hidden="true"></span>
-          <div class="device__screen"><img src="img/cases/easycredit.jpg" alt="" loading="lazy"></div>
+          <div class="device__screen">
+            <video src="img/decks/repayment-guard/06-intervention-device.mp4" poster="img/decks/repayment-guard/06-intervention-device-poster.png" autoplay muted loop playsinline></video>
+            <img class="device__sheet" src="img/decks/repayment-guard/rate-sheet.png" alt="Your rate after this payout — 157€ rises to 283€, +126€ for 36 months">
+          </div>
         </div>
       </figure>
     </article>
     <article class="tcard" data-r>
       <div class="tcard__text">
         <span class="tcard__no">03</span>
+        <h3 class="tcard__title"><a href="case-job-kompass.html">A calmer way through the job hunt</a></h3>
+        <p class="tcard__desc">An AI-native companion for anxious job seekers, honest about what its AI can’t know.</p>
+        <div class="tcard__abc">
+          <div><h5><i>A.</i> Challenge</h5><p>10 of 10 surveyed job seekers tracked applications with no dedicated tool; 0 of 10 would trust a bare match score.</p></div>
+          <div><h5><i>B.</i> Approach</h5><p>A score-free, reasoned fit assessment tested head-to-head against two other bets — the calm one-workspace direction won with users.</p></div>
+          <div><h5><i>C.</i> Outcome</h5><p>Slice 1 runs end to end — capture, streamed assessment, reopenable cards. Still in build, deliberately unlaunched.</p></div>
+        </div>
+        <ul class="tcard__tags"><li>AI-native product</li><li>Solo build</li><li>Research-led</li></ul>
+        <div class="tcard__foot">
+          <a class="tcard__open" href="case-job-kompass.html">Open full case study <i aria-hidden="true">→</i></a>
+          <span class="tcard__yr">Career tech — Prototype, in build</span>
+        </div>
+      </div>
+      <figure class="tcard__media">
+        <div class="device device--flat device--flat--wide device--flat--shot"><img src="img/cases/job-kompass.jpg" alt="" loading="lazy"></div>
+      </figure>
+    </article>
+    <article class="tcard" data-r>
+      <div class="tcard__text">
+        <span class="tcard__no">04</span>
         <h3 class="tcard__title"><a href="case-platform.html">From five products to one operational hub</a></h3>
         <p class="tcard__desc">Unifying a fragmented enterprise ecosystem — one SSO, one IA, a shared design system.</p>
         <div class="tcard__abc">
@@ -140,15 +164,12 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
         </div>
       </div>
       <figure class="tcard__media">
-        <div class="device device--web">
-          <div class="device__bar" aria-hidden="true"><span class="device__dot"></span><span class="device__dot"></span><span class="device__dot"></span></div>
-          <div class="device__screen"><img src="img/cases/vier-portal.jpg" alt="" loading="lazy"></div>
-        </div>
+        <div class="device device--flat device--flat--wide device--flat--shot"><img src="img/cases/vier-portal.jpg" alt="" loading="lazy"></div>
       </figure>
     </article>
     <article class="tcard" data-r>
       <div class="tcard__text">
-        <span class="tcard__no">04</span>
+        <span class="tcard__no">05</span>
         <h3 class="tcard__title"><a href="case-driveradar.html">Predictive maintenance, legible at a glance</a></h3>
         <p class="tcard__desc">Turning dense sensor data into a three-level view where failing machines stand out immediately.</p>
         <div class="tcard__abc">
@@ -163,33 +184,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
         </div>
       </div>
       <figure class="tcard__media">
-        <div class="device device--web">
-          <div class="device__bar" aria-hidden="true"><span class="device__dot"></span><span class="device__dot"></span><span class="device__dot"></span></div>
-          <div class="device__screen"><img src="img/decks/driveradar/06-outcome.png" alt="" loading="lazy"></div>
-        </div>
-      </figure>
-    </article>
-    <article class="tcard" data-r>
-      <div class="tcard__text">
-        <span class="tcard__no">05</span>
-        <h3 class="tcard__title"><a href="case-design-system.html">A shared product language</a></h3>
-        <p class="tcard__desc">Token-first foundations and a contribution model that keeps a multi-product suite consistent.</p>
-        <div class="tcard__abc">
-          <div><h5><i>A.</i> Challenge</h5><p>Several products, one brand — a UI that had drifted apart.</p></div>
-          <div><h5><i>B.</i> Approach</h5><p>Token-first foundations, documented components, a contribution model engineers actually use.</p></div>
-          <div><h5><i>C.</i> Outcome</h5><p>One shared language across the suite. Full case study in progress.</p></div>
-        </div>
-        <ul class="tcard__tags"><li>Design tokens</li><li>Component library</li><li>Documentation</li></ul>
-        <div class="tcard__foot">
-          <a class="tcard__open" href="case-design-system.html">Open full case study <i aria-hidden="true">→</i></a>
-          <span class="tcard__yr">Design system — In progress</span>
-        </div>
-      </div>
-      <figure class="tcard__media">
-        <div class="device device--web">
-          <div class="device__bar" aria-hidden="true"><span class="device__dot"></span><span class="device__dot"></span><span class="device__dot"></span></div>
-          <div class="device__screen"><img src="img/cases/vier-ds.jpg" alt="" loading="lazy"></div>
-        </div>
+        <div class="device device--flat device--flat--wide device--flat--shot"><img src="img/decks/driveradar/06-outcome.png" alt="" loading="lazy"></div>
       </figure>
     </article>
     <p class="work__more" data-r>More work under NDA — <a href="mailto:elghouilamed@gmail.com">request the full portfolio deck</a>.</p>
@@ -224,7 +219,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
     <div class="about">
       <div class="about__l" data-r>
         <figure class="about__portrait">
-          <img src="img/home/portrait.jpg" alt="Mohamed Ali Ghouila" width="1800" height="1200" loading="lazy" />
+          <img src="img/home/portrait.jpg" alt="Mohamed Ali Ghouila" width="710" height="888" loading="lazy" />
         </figure>
         <h3><i>A.</i> Profile</h3>
         <p>I’m a senior product designer working across B2C, B2B and design systems, for companies and clients including TeamBank, VIER, SAP and SEW. My work spans consumer fintech, enterprise platforms and the systems that keep product teams consistent.</p>
@@ -289,7 +284,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
       <div><b>Based in</b><span style="font-size:.95rem">Germany — remote &amp; on-site · <span data-clock>--:--</span> CET</span></div>
     </div>
     <footer class="contact__foot">
-      <p>© <span data-year>2026</span> Mohamed Ali Ghouila — Magdesign®</p>
+      <p>© <span data-year>2026</span> Mohamed Ali Ghouila — Magdesigns®</p>
       <p>Designed to be essential. Nothing more.</p>
       <a href="#top">Back to top ↑</a>
     </footer>

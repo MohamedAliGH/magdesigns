@@ -14,6 +14,20 @@
         { "node": "152:2", "file": "img/decks/driveradar/06-outcome.png" }
       ]
     },
+    "job-kompass": {
+      "section": "1231:2",
+      "slides": [
+        { "node": "1231:3",   "file": "img/decks/job-kompass/01-cover.png" },
+        { "node": "1231:17",  "file": "img/decks/job-kompass/02-problem.png" },
+        { "node": "1231:62",  "file": "img/decks/job-kompass/03-thesis.png" },
+        { "node": "1231:69",  "file": "img/decks/job-kompass/04-directions.png" },
+        { "node": "1231:100", "file": "img/decks/job-kompass/05-core-loop.png" },
+        { "node": "1231:128", "file": "img/decks/job-kompass/06-ai-trust.png" },
+        { "node": "1231:158", "file": "img/decks/job-kompass/07-built-honest.png" },
+        { "node": "1231:188", "file": "img/decks/job-kompass/08-first-contact.png" },
+        { "node": "1231:214", "file": "img/decks/job-kompass/09-status.png" }
+      ]
+    },
     "easycredit": {
       "section": "992:2",
       "slides": [

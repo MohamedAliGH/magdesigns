@@ -17,11 +17,25 @@
 .device{position:relative;margin-inline:auto;background:#0d0d0f}
 .device__screen{position:relative;overflow:hidden;background:#fff}
 .device__screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* screen-recording plays as the phone screen itself — clipped by the bezel's rounded screen, no manual geometry */
+.device__screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* SRG intervention: the 157->283 sheet slides up over the recording once the user's rate choice
+   settles (283€/36mo, dead-still from 10.5s in the 14.858s recording — frame-diff measured).
+   Timing is driven by JS off the video's own currentTime (main.js "sheet sync") — a CSS animation
+   clock can never stay phase-locked to a video (load delay + loop imprecision drift apart).
+   Selector must out-specify `.device__screen img` (which forces inset:0/height:100%/cover). */
+.device__screen img.device__sheet{top:auto;bottom:0;height:auto;object-fit:contain;z-index:2;
+  transform:translateY(102%);transition:transform .9s var(--ease)}
+.device__screen img.device__sheet.up{transform:translateY(0)}
+/* reduced motion / screenshot capture: no slide, solution shown statically (JS adds .up) */
+html.flat .device__screen img.device__sheet{transition:none}
+@media(prefers-reduced-motion:reduce){.device__screen img.device__sheet{transition:none}}
 
-/* phone */
-.device--phone{width:min(300px,64%);padding:11px;border-radius:40px;
+/* phone — dark bezel (40px radius, 11px pad, 28px inner screen). Screen aspect matches the
+   recording (1284x2778) so object-fit:cover shows the FULL app — header/footer never cropped. */
+.device--phone{width:min(264px,58%);padding:11px;border-radius:40px;
   box-shadow:0 34px 70px -34px rgba(12,12,12,.55),0 10px 24px -14px rgba(12,12,12,.35)}
-.device--phone .device__screen{border-radius:28px;aspect-ratio:9/17}
+.device--phone .device__screen{border-radius:28px;aspect-ratio:1284/2778}
 .device--phone .device__notch{position:absolute;top:19px;left:50%;transform:translateX(-50%);
   z-index:2;width:32%;height:11px;background:#0d0d0f;border-radius:99px}
 .device--phone .device__screen img{object-position:50% 0%;animation:pvScrollY 14s var(--ease) infinite alternate}
@@ -34,6 +48,15 @@
 .device--web .device__dot{width:10px;height:10px;border-radius:50%;background:#c4c4bd}
 .device--web .device__screen{aspect-ratio:16/10;border-top:1px solid var(--rule-soft)}
 .device--web .device__screen img{object-position:0% 0%;animation:pvPan 18s var(--ease) infinite alternate}
+
+/* flat — pre-rendered mockup art shown as-is (baked device frame, or a clean screenshot); no CSS chrome */
+.device--flat{position:relative;background:none;margin-inline:auto;line-height:0}
+.device--flat>img{display:block;width:100%;height:auto;object-fit:contain}
+.device--flat--phone{width:min(300px,60%)}
+.device--flat--wide{width:min(540px,94%)}
+/* clean screenshot with no baked frame → give it a card edge + shadow */
+.device--flat--shot>img{border-radius:12px;border:1px solid var(--rule-soft);
+  box-shadow:0 34px 70px -34px rgba(12,12,12,.4),0 10px 24px -16px rgba(12,12,12,.25)}
 @keyframes pvPan{0%{object-position:0% 0%}100%{object-position:100% 100%}}
 
 /* ============================================================

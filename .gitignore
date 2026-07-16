@@ -4,3 +4,12 @@ node_modules/
 *.bak
 index-hover.html
 index-open.html
+
+# local-only: raw capture sources + design reference + session docs (site ships the processed copies)
+ScreenRecording*
+Portfolio design tweaks.zip
+design_handoff_portfolio/
+HANDOVER-PROMPT.md
+img/home/Group 15.png
+img/home/device.png
+img/home/Screenshot*

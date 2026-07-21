@@ -1,5 +1,5 @@
 {
-  "_note": "Maps Figma deck slides -> local case-page images. To re-sync after editing a deck in Figma, re-export each node via Figma MCP get_screenshot (maxDimension 2400) and curl the PNG into the listed file. Driven by a Claude + Figma session, not a plain node script.",
+  "_note": "Maps Figma deck slides -> local case-page images. To re-sync after editing a deck in Figma, re-export each node via Figma MCP download_assets (defaultScale:2 -> retina 3840x2160; defaultScale:1 -> 1920x1080) and curl the returned export URL into the listed file. Driven by a Claude + Figma session, not a plain node script.",
   "fileKey": "ms6a8Br6n28g6BJDZBdyIH",
   "maxDimension": 2400,
   "decks": {
@@ -53,6 +53,21 @@
         { "node": "66:8",  "file": "img/decks/repayment-guard/07-tradeoff.png" },
         { "node": "71:2",  "file": "img/decks/repayment-guard/08-measure.png" },
         { "node": "71:22", "file": "img/decks/repayment-guard/09-watch.png" }
+      ]
+    },
+    "vier": {
+      "section": "1743:2",
+      "slides": [
+        { "node": "1743:3",  "file": "img/decks/vier/01-cover.png" },
+        { "node": "1743:19", "file": "img/decks/vier/02-problem.png" },
+        { "node": "1827:2",  "file": "img/decks/vier/03-discovery.png" },
+        { "node": "1743:49", "file": "img/decks/vier/04-strategy.png" },
+        { "node": "1743:65", "file": "img/decks/vier/05-ia.png" },
+        { "node": "1903:2",  "file": "img/decks/vier/06-tradeoff.png" },
+        { "node": "1752:2",  "file": "img/decks/vier/07-shipped.png" },
+        { "node": "1743:79", "file": "img/decks/vier/08-outcome.png" },
+        { "node": "1763:2",  "file": "img/decks/vier/09-design-system.png" },
+        { "node": "1743:25", "file": "img/decks/vier/10-reflection.png" }
       ]
     }
   }

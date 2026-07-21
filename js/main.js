@@ -86,9 +86,6 @@
     }else vid.play().catch(()=>{});
   });
 
-  // clock + year
-  const fmt=new Intl.DateTimeFormat('de-DE',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Berlin'});
-  const tickC=()=>$$('[data-clock]').forEach(e=>e.textContent=fmt.format(new Date()));
-  tickC();setInterval(tickC,30000);
+  // year
   $$('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
 })();

@@ -24,7 +24,7 @@ if(new URLSearchParams(location.search).has('shot'))document.documentElement.cla
   <nav class="top__nav" aria-label="Primary">
     <a href="#work">Work</a><a href="#numbers">Numbers</a><a href="#about">About</a><a href="#contact">Contact</a>
   </nav>
-  <div class="top__meta"><span class="dot" aria-hidden="true"></span>Germany — <span data-clock>--:--</span> CET</div>
+  <div class="top__meta"></div>
   <button class="top__burger" type="button" aria-expanded="false" aria-controls="menu" data-burger>
     <span></span><span></span><span class="visually-hidden">Menu</span>
   </button>
@@ -47,6 +47,56 @@ if(new URLSearchParams(location.search).has('shot'))document.documentElement.cla
 
   <!-- HERO -->
   <section class="hero">
+    <svg id="hero-circuit" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
+      <defs>
+        <linearGradient id="hcFade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1600" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+          <stop offset="0.40" stop-color="#fff" stop-opacity="0.05"></stop>
+          <stop offset="0.62" stop-color="#fff" stop-opacity="0.5"></stop>
+          <stop offset="0.82" stop-color="#fff" stop-opacity="1"></stop>
+        </linearGradient>
+        <mask id="hcMask"><rect x="0" y="0" width="1600" height="900" fill="url(#hcFade)"></rect></mask>
+      </defs>
+      <g mask="url(#hcMask)">
+        <g stroke="#0C0C0C" stroke-opacity="0.16" stroke-width="1.4" fill="none" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M740 452 H980 L1034 398 H1220 L1274 452 H1476"></path>
+          <path d="M804 302 H1028 L1082 356 H1236 L1290 414 H1444 L1476 446"></path>
+          <path d="M780 590 H996 L1050 535 H1220 L1274 474 H1444 L1476 458"></path>
+          <path d="M932 215 V302 L990 359 H1156 L1210 404 H1396 L1406 414"></path>
+          <path d="M1268 647 H1364 L1412 599 V532 L1481 463"></path>
+          <path d="M1172 180 V266 L1220 314 V356"></path>
+          <path d="M1492 452 H1598"></path>
+        </g>
+        <g stroke="#1F3DFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="2 34" style="opacity:.45">
+          <path d="M740 452 H980 L1034 398 H1220 L1274 452 H1476" style="animation:flowDash 11s linear infinite"></path>
+          <path d="M804 302 H1028 L1082 356 H1236 L1290 414 H1444 L1476 446" style="animation:flowDash 12.5s linear infinite 1.4s"></path>
+          <path d="M780 590 H996 L1050 535 H1220 L1274 474 H1444 L1476 458" style="animation:flowDash 11.8s linear infinite .7s"></path>
+          <path d="M932 215 V302 L990 359 H1156 L1210 404 H1396 L1406 414" style="animation:flowDash 13.5s linear infinite 2s"></path>
+          <path d="M1268 647 H1364 L1412 599 V532 L1481 463" style="animation:flowDash 12.8s linear infinite 1s"></path>
+          <path d="M1172 180 V266 L1220 314 V356" style="animation:flowDash 13s linear infinite 2.6s"></path>
+        </g>
+        <g stroke="#1F3DFF" stroke-opacity="0.3" stroke-width="1.4" fill="none">
+          <path d="M1274 452 H1476"></path>
+          <path d="M1290 414 H1444 L1476 446"></path>
+          <path d="M1274 474 H1444 L1476 458"></path>
+        </g>
+        <g fill="#0C0C0C" fill-opacity="0.15">
+          <circle cx="740" cy="452" r="3.5"></circle><circle cx="1034" cy="398" r="3.5"></circle><circle cx="1220" cy="398" r="3.5"></circle>
+          <circle cx="804" cy="302" r="3.5"></circle><circle cx="1028" cy="302" r="3.5"></circle><circle cx="1236" cy="356" r="3.5"></circle>
+          <circle cx="780" cy="590" r="3.5"></circle><circle cx="996" cy="590" r="3.5"></circle><circle cx="1220" cy="535" r="3.5"></circle>
+          <circle cx="932" cy="215" r="3.5"></circle><circle cx="1156" cy="359" r="3.5"></circle><circle cx="1396" cy="404" r="3.5"></circle>
+          <circle cx="1268" cy="647" r="3.5"></circle><circle cx="1412" cy="599" r="3.5"></circle><circle cx="1172" cy="180" r="3.5"></circle>
+        </g>
+        <g fill="#1F3DFF">
+          <circle cx="1274" cy="452" r="4" style="opacity:.6;animation:dotBlink 5s ease-in-out infinite"></circle>
+          <circle cx="1290" cy="414" r="4" style="opacity:.6;animation:dotBlink 5.6s ease-in-out infinite .8s"></circle>
+          <circle cx="1274" cy="474" r="4" style="opacity:.6;animation:dotBlink 6.2s ease-in-out infinite .4s"></circle>
+        </g>
+        <circle cx="1492" cy="452" r="16" fill="none" stroke="#1F3DFF" stroke-width="1.5" style="transform-box:fill-box;transform-origin:center;animation:nodePulse 6s ease-out infinite"></circle>
+        <circle cx="1492" cy="452" r="16" fill="none" stroke="#1F3DFF" stroke-opacity="0.3" stroke-width="1.2"></circle>
+        <circle cx="1492" cy="452" r="5.5" fill="#1F3DFF"></circle>
+      </g>
+    </svg>
     <div class="hero__head pad">
       <p class="mono mono--soft" data-r style="margin-bottom:2rem">Mohamed Ali Ghouila — Sr. Product Designer ①</p>
       <h1 data-r>
@@ -54,11 +104,9 @@ if(new URLSearchParams(location.search).has('shot'))document.documentElement.cla
         <span class="row"><span>empowers<em>*</em></span></span>
       </h1>
     </div>
-    <p class="hero__note" data-r><em class="blue" style="font-style:normal">*</em> by stripping away the unnecessary — <b>revealing the true essence</b> of a product and creating solutions that function beautifully and resonate on a personal level.</p>
     <div class="hero__foot">
       <div><b>Role</b><span>Sr. Product Designer</span></div>
       <div><b>Focus</b><span>B2C / B2B / Design Systems</span></div>
-      <div><b>Base</b><span>Germany</span></div>
       <div><b>Status</b><span class="blue">● Open to enquiries</span></div>
     </div>
   </section>
@@ -281,7 +329,7 @@ if(new URLSearchParams(location.search).has('shot'))document.documentElement.cla
         <a href="https://www.instagram.com/medali_ghouila/" target="_blank" rel="noopener">Instagram ↗</a>
       </div>
       <div><b>Phone</b><a href="tel:+4917647696936">+49 176 476 969 36</a></div>
-      <div><b>Based in</b><span style="font-size:.95rem">Germany — remote &amp; on-site · <span data-clock>--:--</span> CET</span></div>
+      <div><b>Based in</b><span style="font-size:.95rem">Germany — remote &amp; on-site</span></div>
     </div>
     <footer class="contact__foot">
       <p>© <span data-year>2026</span> Mohamed Ali Ghouila — Magdesigns®</p>

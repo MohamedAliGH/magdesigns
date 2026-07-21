@@ -86,8 +86,8 @@ html.flat .dot{animation:none}
 .menu__foot{margin-top:2.5rem;font:400 .8rem var(--f-mono);display:flex;flex-direction:column;gap:.4rem}
 
 /* ============ hero ============ */
-.hero{border-bottom:1px solid var(--rule);min-height:calc(100dvh - 53px);display:flex;flex-direction:column}
-.hero__head{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:4rem}
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule);min-height:calc(100dvh - 53px);display:flex;flex-direction:column}
+.hero__head{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:4rem}
 .hero h1{
   font-family:var(--f-disp);font-weight:800;
   font-stretch:125%;
@@ -103,13 +103,18 @@ html.flat .dot{animation:none}
 html.flat .hero h1 .row span{transform:none;transition:none}
 @media(prefers-reduced-motion:reduce){.hero h1 .row span{transform:none!important}}
 .hero h1 em{font-style:italic;font-weight:500;color:var(--blue)}
-.hero__foot{border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr)}
+.hero__foot{position:relative;z-index:1;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr)}
 .hero__foot>div{padding:1.2rem var(--gut);border-right:1px solid var(--rule-soft)}
 .hero__foot>div:last-child{border-right:0}
 .hero__foot b{display:block;font:400 .62rem/2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:400}
 .hero__foot span{font-size:.92rem}
-.hero__note{padding:1.4rem var(--gut);border-top:1px solid var(--rule);font-size:1.02rem;color:var(--ink-soft);max-width:72ch}
-.hero__note b{color:var(--ink);font-weight:500}
+/* hero circuit graphic (matches LinkedIn banner motif) */
+@keyframes flowDash{to{stroke-dashoffset:-360}}
+@keyframes nodePulse{0%{transform:scale(.5);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+@keyframes dotBlink{0%,100%{opacity:.6}50%{opacity:.18}}
+html.flat #hero-circuit *{animation:none}
+@media(prefers-reduced-motion:reduce){#hero-circuit *{animation:none!important}}
+@media(max-width:820px){#hero-circuit{opacity:.55}}
 
 /* marquee */
 .marq{border-bottom:1px solid var(--rule);overflow:hidden;padding-block:1rem;white-space:nowrap}

@@ -103,7 +103,7 @@ html.flat .dot{animation:none}
 html.flat .hero h1 .row span{transform:none;transition:none}
 @media(prefers-reduced-motion:reduce){.hero h1 .row span{transform:none!important}}
 .hero h1 em{font-style:italic;font-weight:500;color:var(--blue)}
-.hero__foot{position:relative;z-index:1;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr)}
+.hero__foot{position:relative;z-index:1;background:var(--bg);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr)}
 .hero__foot>div{padding:1.2rem var(--gut);border-right:1px solid var(--rule-soft)}
 .hero__foot>div:last-child{border-right:0}
 .hero__foot b{display:block;font:400 .62rem/2 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:400}

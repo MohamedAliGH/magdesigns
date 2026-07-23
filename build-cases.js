@@ -60,7 +60,7 @@ if(new URLSearchParams(location.search).has('flat'))document.documentElement.cla
   <nav class="top__nav" aria-label="Primary">
     <a href="index.html#work">Work</a><a href="index.html#numbers">Numbers</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a>
   </nav>
-  <div class="top__meta"><span class="dot" aria-hidden="true"></span>Germany — <span data-clock>--:--</span> CET</div>
+  <div class="top__meta"></div>
   <button class="top__burger" type="button" aria-expanded="false" aria-controls="menu" data-burger>
     <span></span><span></span><span class="visually-hidden">Menu</span>
   </button>
@@ -426,9 +426,9 @@ const CASES = [
     gTitle: "A factory’s failing machinery, <em>legible at a glance</em>",
     desc: 'Redesigning the condition-monitoring platform engineers use to catch a gearbox failure before it stops a production line.',
     role: 'Product / UI designer — owned the asset-overview, asset-detail, and measurement views.',
-    tags: 'DriveRadar · SEW-Eurodrive · B2B SaaS / IIoT',
+    tags: 'DriveRadar · SEW-Eurodrive · B2B SaaS / IoT',
     lede: "All the data, almost none of the legibility. A map and table where every asset looked equal; failing units didn’t stand out. A missed warning isn’t bad UX — it’s a stopped production line.",
-    meta: [['Role', 'Product / UI Designer'], ['Client', 'SEW-Eurodrive'], ['Domain', 'B2B · IIoT'], ['Type', 'Shipped']],
+    meta: [['Role', 'Product / UI Designer'], ['Client', 'SEW-Eurodrive'], ['Domain', 'B2B · IoT'], ['Type', 'Shipped']],
     slides: [
       {src: 'img/decks/driveradar/01-cover.png',    label: 'Cover',     alt: 'DriveRadar case cover — a factory\'s failing machinery, legible at a glance'},
       {src: 'img/decks/driveradar/02-problem.png',  label: 'Problem',   alt: 'The problem — all the data, almost none of the legibility; reframe: design around the decision, not the data'},
